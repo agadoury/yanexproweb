@@ -71,10 +71,18 @@ Déjà en place :
 [Google Search Console](https://search.google.com/search-console) et relier la
 fiche [Google Business Profile](https://business.google.com).
 
+## Demandes de rendez-vous
+
+La page [`/rendez-vous`](src/pages/rendez-vous.astro) envoie les demandes par
+courriel à l'adresse du garage via [formsubmit.co](https://formsubmit.co)
+(gratuit, aucun compte requis).
+
+⚠️ **Activation (une seule fois)** : la toute première demande envoyée
+déclenche un courriel de confirmation de FormSubmit à `yanexpro@hotmail.com`
+(vérifiez les courriels indésirables). Cliquez « Activate » — ensuite, toutes
+les demandes arrivent directement dans la boîte de réception.
+
 ## Évolutions prévues
 
-- **Prise de rendez-vous** : ajouter une page `rendez-vous.astro` avec un
-  formulaire (ou un widget de réservation) — Astro accepte les îlots React et
-  les points d'API si besoin d'un backend.
 - **Robot conversationnel** : s'intègre comme îlot interactif dans
   `BaseLayout.astro` sans toucher au reste du site.

@@ -1,0 +1,283 @@
+---
+import { SITE } from '../config/site';
+import { SERVICES } from '../data/services';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+/**
+ * Formulaire de demande de rendez-vous.
+ * Livraison des demandes par courriel via formsubmit.co — aucun serveur requis.
+ * IMPORTANT : la toute première demande envoie un courriel d'activation à
+ * l'adresse du garage; il faut cliquer « Activate » une seule fois.
+ */
+const FORM_ACTION = `https://formsubmit.co/${SITE.email}`;
+---
+
+<BaseLayout
+  title="Prenez rendez-vous | Garage Yanexpro à Varennes"
+  description="Demandez un rendez-vous en ligne au Garage Yanexpro à Varennes : freins, pneus, alignement, entretien. Nous vous rappelons rapidement pour confirmer. Ou appelez au (450) 652-2121."
+>
+  <!-- ===== En-tête ===== -->
+  <section class="section-dark">
+    <div class="container page-hero">
+      <p class="eyebrow eyebrow--light">Rendez-vous</p>
+      <h1 class="page-title">Demandez votre rendez-vous</h1>
+      <p class="page-hero__lead">
+        Remplissez le formulaire et nous vous rappellerons rapidement pour confirmer l'heure
+        exacte. Pressé? Appelez-nous directement au
+        <a href={SITE.phone.href} class="page-hero__phone">{SITE.phone.display}</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Formulaire ===== -->
+  <section class="container booking">
+    <form class="card booking__form" action={FORM_ACTION} method="POST">
+      <input type="hidden" name="_subject" value="Demande de rendez-vous — yanexpro.com" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value={`${SITE.url}/merci`} />
+      <input type="text" name="_honey" class="booking__honey" tabindex="-1" autocomplete="off" />
+
+      <div class="booking__row">
+        <div class="booking__field">
+          <label for="nom">Nom complet <span class="booking__required">*</span></label>
+          <input type="text" id="nom" name="Nom" required autocomplete="name" />
+        </div>
+        <div class="booking__field">
+          <label for="telephone">Téléphone <span class="booking__required">*</span></label>
+          <input type="tel" id="telephone" name="Téléphone" required autocomplete="tel" />
+        </div>
+      </div>
+
+      <div class="booking__row">
+        <div class="booking__field">
+          <label for="courriel">Courriel</label>
+          <input type="email" id="courriel" name="Courriel" autocomplete="email" />
+        </div>
+        <div class="booking__field">
+          <label for="vehicule">Véhicule</label>
+          <input
+            type="text"
+            id="vehicule"
+            name="Véhicule"
+            placeholder="ex. : Honda Civic 2019"
+          />
+        </div>
+      </div>
+
+      <div class="booking__row">
+        <div class="booking__field">
+          <label for="service">Service souhaité <span class="booking__required">*</span></label>
+          <select id="service" name="Service" required>
+            <option value="" disabled selected>Choisissez un service…</option>
+            {SERVICES.map((svc) => <option value={svc.title}>{svc.title}</option>)}
+            <option value="Autre / je ne suis pas certain">Autre / je ne suis pas certain</option>
+          </select>
+        </div>
+        <div class="booking__field">
+          <label for="moment">Moment préféré</label>
+          <select id="moment" name="Moment préféré">
+            <option value="Dès que possible" selected>Dès que possible</option>
+            <option value="Cette semaine">Cette semaine</option>
+            <option value="La semaine prochaine">La semaine prochaine</option>
+            <option value="Flexible / à discuter">Flexible / à discuter</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="booking__field">
+        <label for="message">Message (facultatif)</label>
+        <textarea
+          id="message"
+          name="Message"
+          rows="4"
+          placeholder="Décrivez le problème ou la demande : bruit, témoin allumé, pose de pneus…"
+        ></textarea>
+      </div>
+
+      <button type="submit" class="btn btn--red booking__submit">Envoyer ma demande</button>
+      <p class="booking__note">
+        Vos coordonnées servent uniquement à vous rappeler pour ce rendez-vous.
+      </p>
+    </form>
+
+    <aside class="booking__aside">
+      <div class="card booking__aside-card">
+        <p class="eyebrow">Par téléphone</p>
+        <a href={SITE.phone.href} class="booking__aside-phone">{SITE.phone.display}</a>
+        <p class="booking__aside-text">
+          Du lundi au jeudi de 8 h à 17 h,<br />le vendredi de 8 h à 12 h (hors saison des
+          pneus).
+        </p>
+      </div>
+      <div class="card booking__aside-card">
+        <p class="eyebrow">Sur place</p>
+        <p class="booking__aside-text booking__aside-address">
+          {SITE.address.street}<br />
+          {SITE.address.city}, {SITE.address.province}
+          {SITE.address.postalCode}
+        </p>
+        <p class="booking__aside-text">Parc industriel de Varennes, près de la route 132.</p>
+      </div>
+    </aside>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .page-hero__lead {
+    margin: 20px 0 0;
+    font-size: 18px;
+    line-height: 1.65;
+    color: rgba(246, 246, 244, 0.72);
+    max-width: 640px;
+  }
+
+  .page-hero__phone {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    white-space: nowrap;
+  }
+
+  .booking {
+    padding-top: 72px;
+    padding-bottom: 80px;
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .booking__form {
+    padding: 40px 38px;
+  }
+
+  .booking__honey {
+    display: none;
+  }
+
+  .booking__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .booking__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+
+  .booking__field label {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .booking__required {
+    color: var(--red);
+  }
+
+  .booking__field input,
+  .booking__field select,
+  .booking__field textarea {
+    font-family: var(--font);
+    font-size: 15.5px;
+    color: var(--ink-2);
+    background: var(--paper);
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 6px;
+    padding: 13px 14px;
+    width: 100%;
+  }
+
+  .booking__field textarea {
+    resize: vertical;
+  }
+
+  .booking__field input:focus-visible,
+  .booking__field select:focus-visible,
+  .booking__field textarea:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 0;
+    border-color: var(--red);
+  }
+
+  .booking__submit {
+    width: 100%;
+    border: 0;
+    cursor: pointer;
+    font-family: var(--font);
+  }
+
+  .booking__note {
+    margin: 14px 0 0;
+    text-align: center;
+    font-size: 13px;
+    color: var(--gray-3);
+  }
+
+  .booking__aside {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .booking__aside-card {
+    padding: 28px 26px;
+  }
+
+  .booking__aside-card :global(.eyebrow) {
+    margin-bottom: 10px;
+  }
+
+  .booking__aside-phone {
+    display: inline-block;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--ink);
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+
+  .booking__aside-text {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--gray-3);
+  }
+
+  .booking__aside-address {
+    font-weight: 600;
+    color: var(--ink-2);
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 960px) {
+    .page-hero,
+    .booking {
+      padding-top: 56px;
+      padding-bottom: 56px;
+    }
+
+    .booking {
+      grid-template-columns: 1fr;
+    }
+
+    .booking__form {
+      padding: 30px 24px;
+    }
+
+    .booking__row {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+</style>

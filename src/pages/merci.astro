@@ -1,0 +1,46 @@
+---
+import { SITE } from '../config/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Demande reçue | Garage Yanexpro"
+  description="Votre demande de rendez-vous a bien été envoyée. Nous vous rappellerons rapidement pour confirmer."
+  noindex
+>
+  <section class="section-dark">
+    <div class="container thanks">
+      <p class="eyebrow eyebrow--light">Demande envoyée</p>
+      <h1 class="page-title">Merci! Nous vous rappelons rapidement.</h1>
+      <p class="thanks__text">
+        Votre demande de rendez-vous a bien été reçue. Un membre de l'équipe vous contactera
+        pour confirmer l'heure exacte. Besoin d'une réponse immédiate?
+      </p>
+      <div class="thanks__actions">
+        <a href={SITE.phone.href} class="btn btn--red">{SITE.phone.display}</a>
+        <a href="/" class="btn btn--outline-light">Retour à l'accueil</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .thanks {
+    padding-top: 96px;
+    padding-bottom: 120px;
+  }
+
+  .thanks__text {
+    margin: 20px 0 36px;
+    font-size: 18px;
+    line-height: 1.65;
+    color: rgba(246, 246, 244, 0.72);
+    max-width: 560px;
+  }
+
+  .thanks__actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+</style>

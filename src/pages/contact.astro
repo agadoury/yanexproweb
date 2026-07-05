@@ -21,6 +21,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="card contact__card">
         <p class="eyebrow contact__label">Téléphone</p>
         <a href={SITE.phone.href} class="contact__phone">{SITE.phone.display}</a>
+        <p class="contact__booking">
+          Ou <a href="/rendez-vous">faites une demande de rendez-vous en ligne →</a>
+        </p>
       </div>
 
       <div class="card contact__card">
@@ -97,6 +100,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-size: 24px;
     font-weight: 800;
     color: var(--ink);
+    text-decoration: none;
+  }
+
+  .contact__booking {
+    margin: 10px 0 0;
+    font-size: 14.5px;
+    color: var(--gray-3);
+  }
+
+  .contact__booking a {
+    color: var(--red);
+    font-weight: 700;
     text-decoration: none;
   }
 
