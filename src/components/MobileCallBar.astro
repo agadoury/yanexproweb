@@ -30,6 +30,17 @@ import { SITE } from '../config/site';
       flex-direction: column;
       align-items: flex-end;
       gap: 10px;
+      /* Masqués au chargement; apparaissent au défilement */
+      opacity: 0;
+      transform: translateY(16px);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .call-fabs--visible {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
     }
 
     .call-fabs__call,
@@ -55,4 +66,34 @@ import { SITE } from '../config/site';
       color: var(--paper);
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .call-fabs {
+      transition: none;
+    }
+  }
 </style>
+
+<script>
+  // Affiche les boutons flottants seulement après un début de défilement.
+  const fabs = document.querySelector('.call-fabs');
+  const THRESHOLD = 150;
+  let ticking = false;
+
+  function update() {
+    fabs?.classList.toggle('call-fabs--visible', window.scrollY > THRESHOLD);
+    ticking = false;
+  }
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
+  update();
+</script>
