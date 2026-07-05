@@ -21,8 +21,9 @@ structurées).
 5. [Référencement (SEO)](#référencement-seo)
 6. [Hébergement et déploiement](#hébergement-et-déploiement)
 7. [Liste de vérification — lancement](#liste-de-vérification--lancement)
-8. [Dépannage](#dépannage)
-9. [Choix techniques](#choix-techniques)
+8. [Visibilité IA](#visibilité-ia--être-recommandé-par-chatgpt-claude-etc)
+9. [Dépannage](#dépannage)
+10. [Choix techniques](#choix-techniques)
 
 ---
 
@@ -362,6 +363,49 @@ en-têtes de sécurité (HSTS, nosniff, referrer, permissions), en-tête
 8. ☐ Activer Analytics et Speed Insights dans Vercel si ce n'est pas fait.
 9. ☐ Remplir `googleReviewsUrl` (lien de la fiche Google Maps) pour activer
    le bouton « Voir tous nos avis ».
+10. ☐ Compléter la section [Visibilité IA](#visibilité-ia-être-recommandé-par-chatgpt-claude-etc)
+    ci-dessous (Bing, Apple, annuaires).
+
+---
+
+## Visibilité IA : être recommandé par ChatGPT, Claude, etc.
+
+Il n'existe **aucun moyen direct** (ni payant) d'être recommandé par les
+assistants IA. Quand quelqu'un demande « un bon garage près de Varennes? »,
+l'assistant fait une recherche web et synthétise ce qu'il trouve, ou puise
+dans ce que le web public disait de l'entreprise. Les deux chemins passent
+par des sources qu'on peut influencer. Méfiez-vous des agences « AEO/GEO »
+qui garantissent une visibilité IA : personne ne peut la garantir.
+
+**Déjà en place sur le site** : `llms.txt` (fiche d'entreprise lisible par
+les IA), données structurées schema.org, FAQ et articles Conseils qui
+répondent aux questions réelles, site rapide et bien indexable.
+
+**À faire (comptes du propriétaire requis), par ordre d'impact :**
+
+1. ☐ **Lancer le site sur yanexpro.com** : rien ne remplace l'indexation.
+2. ☐ **Google Business Profile complet** : les recommandations locales
+   (humaines et IA) s'appuient massivement sur Maps. La note 4,9/77 est le
+   meilleur atout du garage.
+3. ☐ **Bing Places + Bing Webmaster Tools** (~30 min, gratuit) : la
+   recherche web de ChatGPT repose sur Bing, et presque aucun commerce
+   local ne s'en occupe. Créer la fiche sur bingplaces.com et soumettre
+   `https://yanexpro.com/sitemap-index.xml` sur bing.com/webmasters.
+4. ☐ **Apple Business Connect** (gratuit, businessconnect.apple.com) :
+   alimente Plans et Siri.
+5. ☐ **Cohérence des annuaires (NAP)** : même nom, adresse (774!) et
+   téléphone sur PagesJaunes, Yelp, Facebook, 411.ca. Des fiches
+   contradictoires diluent la confiance des systèmes.
+6. ☐ **Continuer à récolter des avis Google** : volume, fraîcheur et texte
+   comptent. Inviter les clients satisfaits à mentionner le service et la
+   ville (« pose de pneus rapide à Varennes ») est légitime et efficace.
+7. ☐ **Publier un article Conseils par saison** : c'est ce contenu que les
+   assistants citent quand on leur pose une question d'entretien auto.
+
+**Test mensuel après le lancement** : demander à ChatGPT et à Claude
+« meilleur garage à Varennes » ou « garage pour pneus d'hiver près de
+Sainte-Julie » et noter les sources citées. Là où ils regardent et où le
+garage est absent : c'est la prochaine fiche à créer.
 
 ---
 
