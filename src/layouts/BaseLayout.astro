@@ -75,6 +75,11 @@ const jsonLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {
+      SITE.googleSiteVerification && (
+        <meta name="google-site-verification" content={SITE.googleSiteVerification} />
+      )
+    }
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" href="/favicon.png" sizes="64x64" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

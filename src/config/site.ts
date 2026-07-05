@@ -26,6 +26,9 @@ export const SITE = {
   /** Google Analytics 4 — chargé seulement après consentement (Loi 25). */
   gaMeasurementId: 'G-ERNW1YS7R9',
 
+  /** Jeton de vérification Google Search Console (balise meta). */
+  googleSiteVerification: 'I-ZliXcOElVzbWCAteGlwD-tCRrpL550mbABrIuUjr0',
+
   address: {
     street: '772 Bd Lionel-Boulet',
     city: 'Varennes',
