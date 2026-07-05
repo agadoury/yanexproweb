@@ -187,6 +187,10 @@ et l'entrée de sitemap se créent automatiquement. Conseil : liez chaque
 article vers 2-3 pages de services et terminez par un appel à l'action vers
 `/rendez-vous`.
 
+**Règle de style** (tout le texte visible du site) : pas de tiret long (—);
+préférer la virgule, le deux-points ou les parenthèses. Voir CLAUDE.md pour
+l'ensemble des conventions éditoriales.
+
 ### Images et logo
 
 | Fichier (`public/images/`) | Utilisation | Pour le remplacer |

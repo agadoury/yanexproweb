@@ -10,7 +10,7 @@ export const SITE = {
   tagline: 'MÉCANIQUE AUTO',
   url: 'https://yanexpro.com',
   description:
-    "Garage Yanexpro — mécanique auto à Varennes. Entretien d'automobiles et de camions légers. Membre du réseau UniPro et garage certifié Bumper to Bumper.",
+    "Garage Yanexpro, mécanique auto à Varennes. Entretien d'automobiles et de camions légers. Membre du réseau UniPro et garage certifié Bumper to Bumper.",
 
   phone: {
     display: '(450) 652-2121',

@@ -85,7 +85,7 @@ export const SERVICES: Service[] = [
     faq: [
       {
         q: 'Un véhicule électrique a-t-il vraiment besoin d’entretien?',
-        a: "Oui. Pneus, freins, suspension, filtre d'habitacle et climatisation demandent un suivi régulier — d'autant plus que le poids et le couple d'un VÉ sollicitent davantage certaines pièces.",
+        a: "Oui. Pneus, freins, suspension, filtre d'habitacle et climatisation demandent un suivi régulier, d'autant plus que le poids et le couple d'un VÉ sollicitent davantage certaines pièces.",
       },
       {
         q: 'Pourquoi les pneus d’un VÉ s’usent-ils plus vite?',
@@ -122,7 +122,7 @@ export const SERVICES: Service[] = [
       },
       {
         q: "Pourquoi mon véhicule est-il soudainement plus bruyant?",
-        a: "C'est souvent le signe d'une fuite ou d'une composante percée par la corrosion — fréquent au Québec à cause du sel de déglaçage. Une inspection permet de cibler la pièce à réparer.",
+        a: "C'est souvent le signe d'une fuite ou d'une composante percée par la corrosion, fréquent au Québec à cause du sel de déglaçage. Une inspection permet de cibler la pièce à réparer.",
       },
     ],
   },
@@ -152,7 +152,7 @@ export const SERVICES: Service[] = [
     faq: [
       {
         q: 'Les nids-de-poule peuvent-ils endommager ma suspension?',
-        a: "Oui — c'est l'une des premières causes de bris de suspension et de perte d'alignement au Québec. Après un impact important, une inspection est recommandée.",
+        a: "Oui : c'est l'une des premières causes de bris de suspension et de perte d'alignement au Québec. Après un impact important, une inspection est recommandée.",
       },
       {
         q: 'Quels sont les signes d’amortisseurs usés?',
@@ -202,7 +202,7 @@ export const SERVICES: Service[] = [
     metaTitle: 'Refroidissement et air climatisé auto à Varennes | Garage Yanexpro',
     metaDescription:
       "Entretien du système de refroidissement et de l'air climatisé à Varennes : radiateur, thermostat, antigel, climatisation. Garage Yanexpro : (450) 652-2121.",
-    lead: "Le système de refroidissement protège votre moteur contre la surchauffe, hiver comme été. Nous l'entretenons au complet — incluant votre air climatisé.",
+    lead: "Le système de refroidissement protège votre moteur contre la surchauffe, hiver comme été. Nous l'entretenons au complet, incluant votre air climatisé.",
     signs: [
       'Jauge de température qui grimpe ou surchauffe',
       'Liquide de refroidissement sous le véhicule',
@@ -220,7 +220,7 @@ export const SERVICES: Service[] = [
     faq: [
       {
         q: "Pourquoi vérifier l'antigel avant l'hiver?",
-        a: "Un antigel fatigué protège moins bien contre le gel et la corrosion. Une vérification saisonnière évite les mauvaises surprises par grand froid — et protège votre moteur à l'année.",
+        a: "Un antigel fatigué protège moins bien contre le gel et la corrosion. Une vérification saisonnière évite les mauvaises surprises par grand froid, et protège votre moteur à l'année.",
       },
       {
         q: 'Mon air climatisé souffle de l’air tiède, que faire?',
@@ -284,7 +284,7 @@ export const SERVICES: Service[] = [
     faq: [
       {
         q: 'Mon témoin moteur est allumé, est-ce grave?',
-        a: "Pas toujours — mais seul un diagnostic le confirme. S'il clignote, arrêtez-vous rapidement : cela peut signaler des ratés qui endommagent le convertisseur catalytique.",
+        a: "Pas toujours, mais seul un diagnostic le confirme. S'il clignote, arrêtez-vous rapidement : cela peut signaler des ratés qui endommagent le convertisseur catalytique.",
       },
       {
         q: "Qu'est-ce qu'une mise au point moderne?",
@@ -318,7 +318,7 @@ export const SERVICES: Service[] = [
     faq: [
       {
         q: 'Quand les pneus d’hiver sont-ils obligatoires au Québec?',
-        a: "Du 1er décembre au 15 mars, tout véhicule de promenade immatriculé au Québec doit être chaussé de pneus d'hiver. Prenez rendez-vous tôt à l'automne — la saison des pneus se remplit vite : (450) 652-2121.",
+        a: "Du 1er décembre au 15 mars, tout véhicule de promenade immatriculé au Québec doit être chaussé de pneus d'hiver. Prenez rendez-vous tôt à l'automne : la saison des pneus se remplit vite : (450) 652-2121.",
       },
       {
         q: 'Pourquoi équilibrer les pneus à la pose?',
@@ -346,7 +346,7 @@ export const HOME_SERVICES = [
 export const GENERAL_FAQ: ServiceFaq[] = [
   {
     q: 'Dois-je prendre rendez-vous?',
-    a: "Oui, c'est la meilleure façon d'être servi rapidement. Appelez-nous au (450) 652-2121 — du lundi au jeudi de 8 h à 17 h, le vendredi de 8 h à 12 h (hors saison des pneus).",
+    a: "Oui, c'est la meilleure façon d'être servi rapidement. Appelez-nous au (450) 652-2121, du lundi au jeudi de 8 h à 17 h, le vendredi de 8 h à 12 h (hors saison des pneus).",
   },
   {
     q: 'Entretenez-vous les camions légers?',
