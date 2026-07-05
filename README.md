@@ -37,6 +37,23 @@ Photos prévues par la maquette : atelier / véhicule sur pont (accueil), façad
 garage (accueil), Yannick McGinnis et son équipe (notre garage), intérieur de
 l'atelier (notre garage).
 
+## Hébergement (Vercel)
+
+Le site est conçu pour être hébergé sur [Vercel](https://vercel.com) :
+
+1. Créer un compte Vercel avec le bouton **Continue with GitHub**.
+2. **Add New… → Project**, choisir le dépôt `agadoury/yanexproweb` et cliquer
+   **Import**. Vercel détecte Astro automatiquement — ne rien changer,
+   cliquer **Deploy**.
+3. Chaque `git push` sur `main` déploie ensuite le site automatiquement.
+4. Domaine : dans le projet Vercel, **Settings → Domains**, ajouter
+   `yanexpro.com` et `www.yanexpro.com`, puis suivre les instructions DNS
+   affichées (chez le registraire du domaine : un enregistrement `A` pointant
+   vers l'adresse IP indiquée par Vercel, et un `CNAME` pour `www`).
+
+Le fichier [`vercel.json`](vercel.json) active les URL propres
+(`/services` au lieu de `/services.html`) et la mise en cache des ressources.
+
 ## Référencement (SEO / IA)
 
 Déjà en place :
