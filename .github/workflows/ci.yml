@@ -1,0 +1,30 @@
+# Intégration continue : à chaque push ou pull request, le site est
+# reconstruit et vérifié. Une erreur ici signale un problème AVANT que
+# Vercel ne déploie quoi que ce soit de cassé.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    name: Build et vérifications
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Construire le site
+        run: npm run build
+
+      - name: Vérifications de fumée
+        run: node scripts/smoke.mjs

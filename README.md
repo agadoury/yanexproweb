@@ -51,8 +51,10 @@ URL, sans toucher au site en ligne.
 ## Structure du projet
 
 ```
-├── astro.config.mjs          Configuration Astro (domaine, sitemap)
-├── vercel.json               Configuration Vercel (URLs propres, en-têtes, cache)
+├── astro.config.mjs          Configuration Astro (domaine, sitemap, préchargement)
+├── vercel.json               Configuration Vercel (URLs propres, en-têtes de sécurité, cache)
+├── .github/workflows/ci.yml  Intégration continue (build + vérifications à chaque push)
+├── scripts/smoke.mjs         Vérifications de fumée exécutées par la CI
 ├── public/                   Fichiers servis tels quels
 │   ├── favicon.png           Icône d'onglet (emblème du logo)
 │   ├── apple-touch-icon.png  Icône d'écran d'accueil iPhone
@@ -264,7 +266,22 @@ sans redirection. **Ne pas renommer ces pages après le lancement.**
 
 **`vercel.json`** : URLs propres (`/services` plutôt que `/services.html`),
 pas de barre oblique finale, cache immuable des ressources fingerprintées,
-en-tête « noindex » pour les hôtes vercel.app.
+en-têtes de sécurité (HSTS, nosniff, referrer, permissions), en-tête
+« noindex » pour les hôtes vercel.app.
+
+**Qualité vérifiée** :
+
+- **Accessibilité** : zéro violation WCAG 2.1 AA (audit axe sur les 8 types
+  de pages). Pour re-vérifier après une refonte visuelle : audit axe via
+  Playwright sur le site construit.
+- **Intégration continue** : chaque push reconstruit le site et exécute
+  `scripts/smoke.mjs` (pages présentes, données structurées, sitemap
+  correct). Un échec apparaît en rouge dans l'onglet Actions de GitHub —
+  vérifier avant de considérer un changement publié.
+- **Navigation instantanée** : les pages sont préchargées au survol des
+  liens (option `prefetch` d'Astro).
+- **Manifeste web** : icônes et couleur de thème pour l'ajout à l'écran
+  d'accueil d'un téléphone (`public/manifest.webmanifest`).
 
 ---
 

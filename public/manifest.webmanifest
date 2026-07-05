@@ -1,0 +1,15 @@
+{
+  "name": "Garage Yanexpro",
+  "short_name": "Yanexpro",
+  "description": "Mécanique auto à Varennes — entretien d'automobiles et de camions légers.",
+  "lang": "fr-CA",
+  "start_url": "/",
+  "display": "minimal-ui",
+  "background_color": "#F6F6F4",
+  "theme_color": "#14161A",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
