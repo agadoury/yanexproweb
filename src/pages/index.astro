@@ -25,7 +25,7 @@ const PILLARS = [
   description="Garage de mécanique auto à Varennes : freins, suspension, alignement, pneus, véhicules électriques et plus. Membre du réseau UniPro, certifié Bumper to Bumper. Appelez au (450) 652-2121."
 >
   <!-- ===== Héros ===== -->
-  <section class="section-dark">
+  <section class="section-dark hero-wrap">
     <div class="container hero">
       <div>
         <p class="eyebrow eyebrow--light">Mécanique auto à Varennes</p>
@@ -52,14 +52,16 @@ const PILLARS = [
           </div>
         </div>
       </div>
-      <img
-        src="/images/atelier-vehicule-sur-pont.webp"
-        alt="Mécanicien travaillant sous un véhicule monté sur un pont élévateur dans l'atelier du Garage Yanexpro"
-        width="680"
-        height="451"
-        class="hero__photo"
-        fetchpriority="high"
-      />
+      <div class="hero__media">
+        <img
+          src="/images/atelier-vehicule-sur-pont.webp"
+          alt="Mécanicien travaillant sous un véhicule monté sur un pont élévateur dans l'atelier du Garage Yanexpro"
+          width="680"
+          height="451"
+          class="hero__photo"
+          fetchpriority="high"
+        />
+      </div>
     </div>
   </section>
 
@@ -248,7 +250,32 @@ const PILLARS = [
     color: rgba(246, 246, 244, 0.55);
   }
 
+  /* Lueur rouge très discrète dans le coin supérieur droit du héros */
+  .hero-wrap {
+    background:
+      radial-gradient(ellipse 900px 480px at 80% 0%, rgba(200, 16, 46, 0.09), transparent 65%),
+      var(--ink);
+  }
+
+  .hero__media {
+    position: relative;
+  }
+
+  /* Cadre rouge décalé derrière la photo */
+  .hero__media::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    right: -12px;
+    bottom: -12px;
+    border: 1.5px solid rgba(200, 16, 46, 0.45);
+    border-radius: var(--radius);
+  }
+
   .hero__photo {
+    position: relative;
+    display: block;
     width: 100%;
     height: auto;
     aspect-ratio: 4/3.4;
@@ -319,7 +346,6 @@ const PILLARS = [
     font-weight: 600;
     color: var(--ink-2);
     text-decoration: none;
-    transition: border-color 0.15s ease;
   }
 
   .service-chip:hover {

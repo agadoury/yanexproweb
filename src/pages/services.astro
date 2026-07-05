@@ -39,6 +39,7 @@ const faqJsonLd = {
       {
         SERVICES.map((svc) => (
           <a href={`/services/${svc.slug}`} class="card service-card">
+            <span class="service-card__ghost" aria-hidden="true">{svc.num}</span>
             <p class="service-card__num">{svc.num}</p>
             <h2 class="service-card__title">{svc.title}</h2>
             <p class="service-card__desc">{svc.desc}</p>
@@ -87,15 +88,29 @@ const faqJsonLd = {
   }
 
   .service-card {
+    position: relative;
+    overflow: hidden;
     padding: 32px 30px;
     text-decoration: none;
     display: flex;
     flex-direction: column;
-    transition: border-color 0.15s ease;
   }
 
   .service-card:hover {
     border-color: var(--red);
+  }
+
+  /* Grand numéro en filigrane derrière le contenu */
+  .service-card__ghost {
+    position: absolute;
+    top: 2px;
+    right: 16px;
+    font-size: 76px;
+    font-weight: 800;
+    font-style: italic;
+    line-height: 1;
+    color: rgba(20, 22, 26, 0.05);
+    pointer-events: none;
   }
 
   .service-card__num {
