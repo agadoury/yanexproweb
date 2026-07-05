@@ -64,6 +64,11 @@ production. Pour voir les données : projet Vercel → onglet **Analytics** →
 pages vues, provenance, appareils — sans témoins (cookies) ni bannière de
 consentement requise.
 
+**Performance (Speed Insights)** : le script Vercel Speed Insights est aussi
+chargé en production — il mesure les Core Web Vitals réels des visiteurs
+(vitesse de chargement, stabilité visuelle). Activation : projet Vercel →
+onglet **Speed Insights** → **Enable**.
+
 ## Référencement (SEO / IA)
 
 Déjà en place :

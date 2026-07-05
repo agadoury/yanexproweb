@@ -94,8 +94,17 @@ const jsonLd = {
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    {/* Vercel Web Analytics — actif seulement en production. */}
+    {/* Vercel Web Analytics et Speed Insights — actifs seulement en production. */}
     {import.meta.env.PROD && <script is:inline defer src="/_vercel/insights/script.js" />}
+    {
+      import.meta.env.PROD && (
+        <script
+          is:inline
+          set:html={`window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };`}
+        />
+      )
+    }
+    {import.meta.env.PROD && <script is:inline defer src="/_vercel/speed-insights/script.js" />}
   </head>
   <body>
     <a href="#contenu" class="skip-link">Aller au contenu</a>
