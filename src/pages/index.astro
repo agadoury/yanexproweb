@@ -4,6 +4,10 @@ import { SITE } from '../config/site';
 import { HOME_SERVICES } from '../data/services';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${SITE.address.street}, ${SITE.address.city}, ${SITE.address.province} ${SITE.address.postalCode}`
+)}`;
+
 const PILLARS = [
   {
     title: 'Professionnel',
@@ -37,6 +41,10 @@ const PILLARS = [
         <div class="hero__actions">
           <a href="/rendez-vous" class="btn btn--red hero__cta">Prenez rendez-vous →</a>
         </div>
+        <a href={mapsUrl} class="hero__address" target="_blank" rel="noopener">
+          <span class="hero__address-dot" aria-hidden="true"></span>
+          {SITE.address.street}, {SITE.address.city}
+        </a>
         <div class="hero__badges">
           <div>
             <p class="hero__badge-title">Réseau UniPro</p>
@@ -226,6 +234,30 @@ const PILLARS = [
   .hero__cta {
     font-size: 17px;
     padding: 18px 38px;
+  }
+
+  .hero__address {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    font-size: 15px;
+    color: rgba(246, 246, 244, 0.72);
+    text-decoration: none;
+  }
+
+  .hero__address:hover {
+    color: var(--paper);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .hero__address-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+    flex: none;
   }
 
   .hero__badges {
