@@ -8,7 +8,7 @@ L'hiver québécois ne pardonne pas les véhicules mal préparés. Froid intense
 gadoue, sel de déglaçage, nids-de-poule cachés sous la neige : chaque hiver,
 les pannes les plus courantes sont aussi les plus évitables. Voici la liste
 de vérification que nous recommandons à nos clients, idéalement dès
-l'automne — avant la cohue de la saison des pneus.
+l'automne, avant la cohue de la saison des pneus.
 
 ## 1. Les pneus d'hiver, avant la date limite
 
@@ -16,7 +16,7 @@ Au Québec, les pneus d'hiver sont obligatoires du **1ᵉʳ décembre au
 15 mars** pour tout véhicule de promenade. Mais n'attendez pas décembre : dès
 que la température descend sous 7 °C, la gomme des pneus d'été durcit et
 perd son adhérence, même sur chaussée sèche. Vérifiez aussi l'état de vos
-pneus d'hiver actuels — un pneu usé près de ses témoins d'usure perd une
+pneus d'hiver actuels : un pneu usé près de ses témoins d'usure perd une
 grande partie de son efficacité dans la neige.
 [Nos conseils, la vente et la pose de pneus](/services/pneus) se réservent
 tôt à l'automne.
@@ -24,8 +24,8 @@ tôt à l'automne.
 ## 2. La batterie : la première victime du froid
 
 Le froid réduit considérablement la capacité d'une batterie. Une batterie qui
-montrait déjà des signes de fatigue à l'automne — démarrage lent, phares qui
-faiblissent — risque de vous laisser en panne au premier matin de −20 °C. Un
+montrait déjà des signes de fatigue à l'automne (démarrage lent, phares qui
+faiblissent) risque de vous laisser en panne au premier matin de −20 °C. Un
 [test de charge](/services/injection-electricite) prend quelques minutes et
 évite bien des remorquages.
 
@@ -34,7 +34,7 @@ faiblissent — risque de vous laisser en panne au premier matin de −20 °C. U
 L'antigel protège votre moteur contre le gel et la corrosion, mais il perd
 ses propriétés avec le temps. Une vérification du
 [système de refroidissement](/services/refroidissement-air-climatise) avant
-l'hiver confirme que le liquide est à la bonne concentration — et que votre
+l'hiver confirme que le liquide est à la bonne concentration, et que votre
 chauffage sera au rendez-vous.
 
 ## 4. Les freins, mis à rude épreuve par le sel
