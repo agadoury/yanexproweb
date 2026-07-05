@@ -372,6 +372,41 @@ en-têtes de sécurité (HSTS, nosniff, referrer, permissions), en-tête
 
 ## Backlog — évolutions envisagées
 
+### Priorités principales
+
+Trois chantiers à fort impact d'affaires. À noter : les logiciels de gestion
+de garage (étape 3 du plan « système de billets » ci-dessous) couvrent
+souvent les trois à la fois — avant de bâtir chaque morceau séparément,
+évaluer si l'adoption d'un tel logiciel ne règle pas tout d'un coup.
+
+1. **Prise de rendez-vous en ligne (calendrier)** : remplacer « nous vous
+   rappellerons » par un vrai choix de plage horaire, confirmé sur-le-champ
+   (p. ex. Cal.com, intégrable au site, offre gratuite, en français).
+   Prérequis opérationnel : quelqu'un au garage doit tenir les
+   disponibilités à jour, sinon l'outil nuit plus qu'il n'aide.
+
+2. **Système de rappels clients** : aujourd'hui, un employé téléphone à
+   chaque client dû pour un entretien ou un changement de pneus — des
+   heures de travail à chaque saison. Objectif : automatiser le premier
+   contact (courriel et/ou SMS déclenché par la date du dernier service et
+   les saisons de pneus), l'employé ne rappelant que ceux qui ne répondent
+   pas.
+   - **Voie légère** : registre clients (Airtable ou tableur) + envois
+     automatisés par un service de courriel/SMS (p. ex. Brevo, Twilio);
+     rapide à monter, coût minime.
+   - **Voie intégrée** : les logiciels de gestion de garage incluent les
+     rappels automatiques liés à l'historique d'entretien — c'est souvent
+     LA raison principale de les adopter.
+   - **Point légal** : l'envoi automatisé exige le consentement du client
+     (Loi canadienne anti-pourriel et Loi 25). Le recueillir au comptoir et
+     ajouter une case à cocher au formulaire de rendez-vous du site.
+
+3. **Programme de fidélité** : récompenser les clients réguliers (p. ex.
+   rabais après X visites, avantage sur la pose de pneus). Définir la
+   mécanique d'affaires d'abord (carte physique? points? rabais simple?),
+   puis le volet site web : page dédiée, inscription par formulaire, et à
+   terme intégration au logiciel de gestion.
+
 ### Suivi des demandes de rendez-vous (système de billets)
 
 Objectif : transformer les courriels du formulaire en un tableau de suivi
@@ -399,14 +434,6 @@ c'est elle qui révèle le vrai flux de travail avant de dépenser :
 
 ### Autres idées en attente
 
-- **Programme de fidélité** : récompenser les clients réguliers (p. ex.
-  rabais après X visites, rappel d'entretien saisonnier, avantage sur la
-  pose de pneus). À définir : la mécanique d'affaires d'abord (carte
-  physique? points? rabais simple?), puis le volet site web — page
-  dédiée expliquant le programme, inscription par formulaire, et à terme
-  intégration au système de billets/gestion (voir plan ci-dessus, les
-  logiciels de gestion de garage de l'étape 3 incluent souvent rappels et
-  fidélisation).
 - **Auto-réponse au client** après l'envoi du formulaire (option
   `_autoresponse` de FormSubmit — texte à approuver).
 - **Robot conversationnel** (IA) : répond aux questions sur les services et
