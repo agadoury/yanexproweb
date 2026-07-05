@@ -7,9 +7,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
  * Formulaire de demande de rendez-vous.
  * Livraison des demandes par courriel via formsubmit.co — aucun serveur requis.
  * IMPORTANT : la toute première demande envoie un courriel d'activation à
- * l'adresse du garage; il faut cliquer « Activate » une seule fois.
+ * l'adresse `bookingEmail`; il faut cliquer « Activate » une seule fois.
  */
-const FORM_ACTION = `https://formsubmit.co/${SITE.email}`;
+const FORM_ACTION = `https://formsubmit.co/${SITE.bookingEmail}`;
 ---
 
 <BaseLayout

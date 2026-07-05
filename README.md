@@ -74,13 +74,16 @@ fiche [Google Business Profile](https://business.google.com).
 ## Demandes de rendez-vous
 
 La page [`/rendez-vous`](src/pages/rendez-vous.astro) envoie les demandes par
-courriel à l'adresse du garage via [formsubmit.co](https://formsubmit.co)
+courriel à l'adresse `bookingEmail` définie dans
+[`src/config/site.ts`](src/config/site.ts) (actuellement
+`yanexprogarage@gmail.com`) via [formsubmit.co](https://formsubmit.co)
 (gratuit, aucun compte requis).
 
 ⚠️ **Activation (une seule fois)** : la toute première demande envoyée
-déclenche un courriel de confirmation de FormSubmit à `yanexpro@hotmail.com`
+déclenche un courriel de confirmation de FormSubmit à cette adresse
 (vérifiez les courriels indésirables). Cliquez « Activate » — ensuite, toutes
-les demandes arrivent directement dans la boîte de réception.
+les demandes arrivent directement dans la boîte de réception. Si vous changez
+`bookingEmail`, une nouvelle activation sera demandée pour la nouvelle adresse.
 
 ## Évolutions prévues
 

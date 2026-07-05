@@ -20,6 +20,9 @@ export const SITE = {
 
   email: 'yanexpro@hotmail.com',
 
+  /** Adresse qui reçoit les demandes de rendez-vous du formulaire. */
+  bookingEmail: 'yanexprogarage@gmail.com',
+
   address: {
     street: '772 Bd Lionel-Boulet',
     city: 'Varennes',
