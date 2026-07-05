@@ -46,6 +46,7 @@ const FORM_ACTION = `https://formsubmit.co/${SITE.bookingEmail}`;
       data-ajax-action={FORM_ACTION.replace('formsubmit.co/', 'formsubmit.co/ajax/')}
     >
       <input type="hidden" name="_subject" value="Demande de rendez-vous — yanexpro.com" />
+      <input type="hidden" name="_replyto" value="" />
       <input type="hidden" name="_template" value="table" />
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_next" value={`${SITE.url}/merci`} />
@@ -327,10 +328,27 @@ const FORM_ACTION = `https://formsubmit.co/${SITE.bookingEmail}`;
       button.textContent = 'Envoi en cours…';
     }
 
+    const data = new FormData(form);
+
+    // Sujet unique par demande — évite le regroupement des courriels dans
+    // Gmail et permet de trier d'un coup d'œil : « Rendez-vous : Pneus — Nom ».
+    const nom = String(data.get('Nom') ?? '').trim();
+    const service = String(data.get('Service') ?? '').split(' (')[0];
+    data.set('_subject', `Rendez-vous : ${service} — ${nom}`);
+
+    // « Répondre » dans Gmail écrit directement au client s'il a laissé
+    // son courriel.
+    const courriel = String(data.get('Courriel') ?? '').trim();
+    if (courriel) {
+      data.set('_replyto', courriel);
+    } else {
+      data.delete('_replyto');
+    }
+
     try {
       const response = await fetch(form.dataset.ajaxAction!, {
         method: 'POST',
-        body: new FormData(form),
+        body: data,
         headers: { Accept: 'application/json' },
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
