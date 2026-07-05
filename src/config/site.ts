@@ -61,6 +61,17 @@ export const SITE = {
 
   owner: 'Yannick McGinnis',
 
+  /** Municipalités voisines mises de l'avant comme zones desservies. */
+  areasServed: [
+    'Varennes',
+    'Boucherville',
+    'Sainte-Julie',
+    'Saint-Amable',
+    'Verchères',
+    'Contrecœur',
+    'Calixa-Lavallée',
+  ],
+
   /** ===== Bandeau saison des pneus =====
    *  'auto'     : s'affiche automatiquement pendant les saisons ci-dessous
    *  'toujours' : toujours visible

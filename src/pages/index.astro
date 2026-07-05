@@ -163,6 +163,19 @@ const PILLARS = [
     )
   }
 
+  <!-- ===== Zones desservies ===== -->
+  <section class="container zones">
+    <p class="eyebrow">Zones desservies</p>
+    <h2 class="section-title zones__title">Au service de Varennes et des environs</h2>
+    <p class="zones__text">
+      Notre garage est situé au {SITE.address.street} à Varennes, tout près de la route 132 — à
+      quelques minutes des municipalités voisines.
+    </p>
+    <ul class="zones__list">
+      {SITE.areasServed.map((town) => <li class="zones__chip">{town}</li>)}
+    </ul>
+  </section>
+
   <!-- ===== Bandeau contact ===== -->
   <section class="container contact-cta">
     <CtaBanner
@@ -456,6 +469,45 @@ const PILLARS = [
     border-bottom: 2px solid var(--red-soft);
   }
 
+  /* ===== Zones desservies ===== */
+
+  .zones {
+    padding-top: 80px;
+    text-align: center;
+  }
+
+  .zones__title {
+    margin-bottom: 14px;
+  }
+
+  .zones__text {
+    margin: 0 auto 28px;
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--gray-2);
+    max-width: 560px;
+  }
+
+  .zones__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .zones__chip {
+    background: #fff;
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    padding: 10px 22px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink-2);
+  }
+
   /* ===== Bandeau contact ===== */
 
   .contact-cta {
@@ -518,6 +570,10 @@ const PILLARS = [
     .services-preview__head {
       flex-direction: column;
       align-items: flex-start;
+    }
+
+    .zones {
+      padding-top: 56px;
     }
 
     .contact-cta {

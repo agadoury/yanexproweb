@@ -32,6 +32,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           {SITE.address.street}<br />
           {SITE.address.city}, {SITE.address.province} {SITE.address.postalCode}
         </p>
+        <p class="contact__zones">
+          À quelques minutes de {SITE.areasServed.filter((t) => t !== 'Varennes').join(', ')}.
+        </p>
       </div>
 
       <div class="card contact__card">
@@ -106,6 +109,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .contact__booking {
     margin: 10px 0 0;
     font-size: 14.5px;
+    color: var(--gray-3);
+  }
+
+  .contact__zones {
+    margin: 10px 0 0;
+    font-size: 14px;
+    line-height: 1.6;
     color: var(--gray-3);
   }
 

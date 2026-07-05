@@ -22,7 +22,7 @@ const serviceJsonLd = {
   description: service.metaDescription,
   url: pageUrl,
   provider: { '@id': `${SITE.url}/#garage` },
-  areaServed: ['Varennes', 'Rive-Sud de Montréal', 'Montérégie'],
+  areaServed: [...SITE.areasServed, 'Rive-Sud de Montréal', 'Montérégie'],
   inLanguage: 'fr-CA',
 };
 
