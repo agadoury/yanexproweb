@@ -2,49 +2,40 @@
 import { SITE } from '../config/site';
 
 interface Props {
-  /** Variante pour fond sombre (pied de page). */
+  /** Variante claire pour fond sombre (pied de page). */
   dark?: boolean;
 }
 
 const { dark = false } = Astro.props;
+const src = dark ? '/images/logo-yanexpro-clair.png' : '/images/logo-yanexpro.png';
 ---
 
-<span class:list={['logo', { 'logo--dark': dark }]}>
-  <span class="logo__name">{SITE.shortName}</span>
-  <span class="logo__tagline">{SITE.tagline}</span>
-</span>
+<img
+  src={src}
+  alt={`${SITE.shortName} — ${SITE.tagline}`}
+  width="300"
+  height="192"
+  class:list={['logo', { 'logo--footer': dark }]}
+/>
 
 <style>
   .logo {
-    display: flex;
-    flex-direction: column;
-    line-height: 1;
+    height: 62px;
+    width: auto;
+    display: block;
   }
 
-  .logo__name {
-    font-family: 'Archivo Logo', var(--font);
-    font-size: 26px;
-    font-weight: 800;
-    font-synthesis: weight;
-    letter-spacing: -0.02em;
-    color: var(--red);
-    font-style: italic;
+  .logo--footer {
+    height: 96px;
   }
 
-  .logo__tagline {
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: 0.28em;
-    color: var(--gray-1);
-    margin-top: 4px;
-  }
+  @media (max-width: 960px) {
+    .logo {
+      height: 54px;
+    }
 
-  .logo--dark .logo__name {
-    font-size: 24px;
-  }
-
-  .logo--dark .logo__tagline {
-    font-size: 10px;
-    color: rgba(246, 246, 244, 0.7);
+    .logo--footer {
+      height: 88px;
+    }
   }
 </style>
