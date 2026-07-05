@@ -84,10 +84,10 @@ const PILLARS = [
     <div class="services-preview__grid">
       {
         HOME_SERVICES.map((svc) => (
-          <div class="card service-chip">
+          <a href={`/services/${svc.slug}`} class="card service-chip">
             <span class="service-chip__dot" aria-hidden="true" />
-            <span>{svc}</span>
-          </div>
+            <span>{svc.label}</span>
+          </a>
         ))
       }
     </div>
@@ -269,6 +269,12 @@ const PILLARS = [
     font-size: 16.5px;
     font-weight: 600;
     color: var(--ink-2);
+    text-decoration: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .service-chip:hover {
+    border-color: var(--red);
   }
 
   .service-chip__dot {

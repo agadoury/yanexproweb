@@ -1,0 +1,77 @@
+---
+import type { ServiceFaq } from '../data/services';
+
+/**
+ * Liste de questions-réponses dépliables.
+ * Le balisage schema.org FAQPage est généré par la page appelante.
+ */
+interface Props {
+  items: ServiceFaq[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="faq">
+  {
+    items.map((item) => (
+      <details class="faq__item">
+        <summary class="faq__question">
+          <span>{item.q}</span>
+          <span class="faq__chevron" aria-hidden="true">▾</span>
+        </summary>
+        <p class="faq__answer">{item.a}</p>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  .faq {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .faq__item {
+    background: #fff;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 0 24px;
+  }
+
+  .faq__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 0;
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--ink);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .faq__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__chevron {
+    color: var(--red);
+    flex: none;
+    transition: transform 0.2s ease;
+  }
+
+  .faq__item[open] .faq__chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq__answer {
+    margin: 0;
+    padding: 0 0 22px;
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--gray-2);
+  }
+</style>

@@ -12,19 +12,24 @@
 
 ## Services
 
-- Système de freinage : inspection et réparation des freins, incluant les freins antiblocage (ABS)
-- Véhicules électriques : réparation et entretien
-- Silencieux et échappement : réparation et remplacement
-- Direction et suspension : diagnostic et réparation
-- Injection et électricité : systèmes d'injection et circuits électriques
-- Refroidissement et air climatisé : entretien
-- Alignement : alignement précis pour une conduite sécuritaire et une usure uniforme des pneus
-- Électronique et mise au point : diagnostic électronique et mise au point du moteur
-- Vente et pose de pneus : conseils, vente et installation pour toutes les saisons
+- [Système de freinage](https://yanexpro.com/services/freins) : inspection et réparation des freins, incluant les freins antiblocage (ABS)
+- [Véhicules électriques](https://yanexpro.com/services/vehicules-electriques) : réparation et entretien
+- [Silencieux et échappement](https://yanexpro.com/services/silencieux-echappement) : réparation et remplacement
+- [Direction et suspension](https://yanexpro.com/services/direction-suspension) : diagnostic et réparation
+- [Injection et électricité](https://yanexpro.com/services/injection-electricite) : systèmes d'injection et circuits électriques
+- [Refroidissement et air climatisé](https://yanexpro.com/services/refroidissement-air-climatise) : entretien
+- [Alignement](https://yanexpro.com/services/alignement) : alignement précis pour une conduite sécuritaire et une usure uniforme des pneus
+- [Électronique et mise au point](https://yanexpro.com/services/electronique-mise-au-point) : diagnostic électronique et mise au point du moteur
+- [Vente et pose de pneus](https://yanexpro.com/services/pneus) : conseils, vente, pose et équilibrage pour toutes les saisons
 
 ## Pages
 
 - [Accueil](https://yanexpro.com/) : présentation du garage et de nos services
 - [Notre garage](https://yanexpro.com/notre-garage) : notre équipe, la certification Bumper to Bumper et l'entretien préventif
-- [Services](https://yanexpro.com/services) : liste complète des services offerts
+- [Services](https://yanexpro.com/services) : liste complète des services et questions fréquentes
 - [Contact](https://yanexpro.com/contact) : coordonnées, heures d'ouverture et carte
+
+## Faits utiles
+
+- Au Québec, les pneus d'hiver sont obligatoires du 1er décembre au 15 mars.
+- Le garage recommande la prise de rendez-vous par téléphone : (450) 652-2121.

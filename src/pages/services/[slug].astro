@@ -1,0 +1,318 @@
+---
+import CtaBanner from '../../components/CtaBanner.astro';
+import FaqList from '../../components/FaqList.astro';
+import { SITE } from '../../config/site';
+import { SERVICES, getService } from '../../data/services';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return SERVICES.map((service) => ({ params: { slug: service.slug } }));
+}
+
+const { slug } = Astro.params;
+const service = getService(slug)!;
+const related = service.related
+  .map((s) => getService(s))
+  .filter((s) => s !== undefined);
+
+const pageUrl = `${SITE.url}/services/${service.slug}`;
+
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: service.title,
+  serviceType: service.title,
+  description: service.metaDescription,
+  url: pageUrl,
+  provider: { '@id': `${SITE.url}/#garage` },
+  areaServed: ['Varennes', 'Rive-Sud de Montréal', 'Montérégie'],
+  inLanguage: 'fr-CA',
+};
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE.url}/services` },
+    { '@type': 'ListItem', position: 3, name: service.title, item: pageUrl },
+  ],
+};
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: service.faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout title={service.metaTitle} description={service.metaDescription}>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+
+  <!-- ===== En-tête ===== -->
+  <section class="section-dark">
+    <div class="container page-hero">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a>
+        <span aria-hidden="true">/</span>
+        <a href="/services">Services</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{service.title}</span>
+      </nav>
+      <p class="service-num">{service.num}</p>
+      <h1 class="page-title">{service.title}</h1>
+      <p class="page-hero__lead">{service.lead}</p>
+    </div>
+  </section>
+
+  <!-- ===== Détails ===== -->
+  <section class="container detail">
+    <div class="detail__grid">
+      <div class="card detail__card">
+        <h2 class="detail__heading">{service.signsTitle ?? 'Signes à surveiller'}</h2>
+        <ul class="detail__list">
+          {service.signs.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div class="card detail__card">
+        <h2 class="detail__heading">Ce que nous faisons</h2>
+        <ul class="detail__list detail__list--check">
+          {service.includes.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Questions fréquentes ===== -->
+  <section class="container faq-section">
+    <p class="eyebrow">Questions fréquentes</p>
+    <h2 class="section-title faq-section__title">{service.title} — vos questions</h2>
+    <FaqList items={[...service.faq]} />
+  </section>
+
+  <!-- ===== Services connexes ===== -->
+  <section class="container related">
+    <p class="eyebrow">À voir aussi</p>
+    <h2 class="section-title related__title">Services connexes</h2>
+    <div class="related__grid">
+      {
+        related.map((rel) => (
+          <a href={`/services/${rel.slug}`} class="card related-card">
+            <p class="related-card__num">{rel.num}</p>
+            <p class="related-card__title">{rel.title}</p>
+            <p class="related-card__desc">{rel.desc}</p>
+            <span class="related-card__more">En savoir plus →</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ===== Bandeau contact ===== -->
+  <section class="container detail-cta">
+    <CtaBanner
+      title={`Besoin d'un rendez-vous : ${service.title.toLowerCase()}?`}
+      subtitle="Appelez-nous, notre équipe vous répond du lundi au vendredi."
+    />
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-top: 56px;
+    padding-bottom: 72px;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13.5px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb a {
+    color: rgba(246, 246, 244, 0.65);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--paper);
+  }
+
+  .breadcrumb span[aria-hidden] {
+    color: rgba(246, 246, 244, 0.35);
+  }
+
+  .breadcrumb [aria-current] {
+    color: var(--paper);
+    font-weight: 600;
+  }
+
+  .service-num {
+    margin: 0 0 12px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--red-soft);
+  }
+
+  .page-hero__lead {
+    margin: 20px 0 0;
+    font-size: 18px;
+    line-height: 1.65;
+    color: rgba(246, 246, 244, 0.72);
+    max-width: 640px;
+  }
+
+  .detail {
+    padding-top: 72px;
+    padding-bottom: 24px;
+  }
+
+  .detail__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .detail__card {
+    padding: 36px 34px;
+  }
+
+  .detail__heading {
+    margin: 0 0 20px;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .detail__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .detail__list li {
+    position: relative;
+    padding-left: 24px;
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--gray-2);
+  }
+
+  .detail__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+    background: var(--red);
+  }
+
+  .detail__list--check li::before {
+    background: var(--ink);
+  }
+
+  .faq-section {
+    padding-top: 48px;
+    padding-bottom: 24px;
+    max-width: calc(880px + var(--gutter) * 2);
+  }
+
+  .faq-section__title {
+    margin-bottom: 28px;
+    font-size: clamp(24px, 3vw, 30px);
+  }
+
+  .related {
+    padding-top: 48px;
+    padding-bottom: 24px;
+  }
+
+  .related__title {
+    margin-bottom: 28px;
+    font-size: clamp(24px, 3vw, 30px);
+  }
+
+  .related__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .related-card {
+    padding: 28px 26px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: border-color 0.15s ease;
+  }
+
+  .related-card:hover {
+    border-color: var(--red);
+  }
+
+  .related-card__num {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--red);
+  }
+
+  .related-card__title {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .related-card__desc {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--gray-3);
+  }
+
+  .related-card__more {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--red);
+  }
+
+  .detail-cta {
+    padding-top: 48px;
+    padding-bottom: 80px;
+  }
+
+  @media (max-width: 960px) {
+    .detail__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .related__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .detail-cta {
+      padding-bottom: 56px;
+    }
+  }
+</style>

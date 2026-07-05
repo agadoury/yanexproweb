@@ -1,13 +1,26 @@
 ---
 import CtaBanner from '../components/CtaBanner.astro';
-import { SERVICES } from '../data/services';
+import FaqList from '../components/FaqList.astro';
+import { GENERAL_FAQ, SERVICES } from '../data/services';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: GENERAL_FAQ.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
 
 <BaseLayout
   title="Nos services | Garage Yanexpro — entretien autos et camions légers à Varennes"
   description="Freins et ABS, véhicules électriques, silencieux et échappement, direction et suspension, alignement, air climatisé, électronique, vente et pose de pneus. Garage Yanexpro à Varennes : (450) 652-2121."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+
   <!-- ===== En-tête ===== -->
   <section class="section-dark">
     <div class="container page-hero">
@@ -25,11 +38,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="services__grid">
       {
         SERVICES.map((svc) => (
-          <article class="card service-card">
+          <a href={`/services/${svc.slug}`} class="card service-card">
             <p class="service-card__num">{svc.num}</p>
             <h2 class="service-card__title">{svc.title}</h2>
             <p class="service-card__desc">{svc.desc}</p>
-          </article>
+            <span class="service-card__more">En savoir plus →</span>
+          </a>
         ))
       }
     </div>
@@ -37,6 +51,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="services__cta">
       <CtaBanner title="Votre service ne figure pas dans la liste? Appelez-nous." compact />
     </div>
+  </section>
+
+  <!-- ===== Questions fréquentes ===== -->
+  <section class="container faq-section">
+    <p class="eyebrow">Questions fréquentes</p>
+    <h2 class="section-title faq-section__title">Vos questions, nos réponses</h2>
+    <FaqList items={GENERAL_FAQ} />
   </section>
 </BaseLayout>
 
@@ -56,7 +77,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .services {
     padding-top: 72px;
-    padding-bottom: 72px;
+    padding-bottom: 24px;
   }
 
   .services__grid {
@@ -67,6 +88,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .service-card {
     padding: 32px 30px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.15s ease;
+  }
+
+  .service-card:hover {
+    border-color: var(--red);
   }
 
   .service-card__num {
@@ -92,19 +121,39 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     color: var(--gray-3);
   }
 
+  .service-card__more {
+    margin-top: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--red);
+  }
+
   .services__cta {
     margin-top: 56px;
+  }
+
+  .faq-section {
+    padding-top: 64px;
+    padding-bottom: 80px;
+    max-width: calc(880px + var(--gutter) * 2);
+  }
+
+  .faq-section__title {
+    margin-bottom: 28px;
   }
 
   @media (max-width: 960px) {
     .page-hero,
     .services {
       padding-top: 56px;
-      padding-bottom: 56px;
     }
 
     .services__grid {
       grid-template-columns: 1fr 1fr;
+    }
+
+    .faq-section {
+      padding-bottom: 56px;
     }
   }
 
