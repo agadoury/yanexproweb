@@ -34,7 +34,7 @@ await check('garage.html', 'Bumper to Bumper');
 await check('services.html', '"@type":"FAQPage"');
 await check('rendez-vous.html', 'formsubmit.co/', 'name="Téléphone"');
 await check('merci.html', 'noindex');
-await check('contact.html', '772 Bd Lionel-Boulet');
+await check('contact.html', '774 Bd Lionel-Boulet');
 await check('404.html', 'Erreur 404');
 
 // Les 9 pages de services

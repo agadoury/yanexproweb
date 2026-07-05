@@ -30,7 +30,7 @@ export const SITE = {
   googleSiteVerification: 'I-ZliXcOElVzbWCAteGlwD-tCRrpL550mbABrIuUjr0',
 
   address: {
-    street: '772 Bd Lionel-Boulet',
+    street: '774 Bd Lionel-Boulet',
     city: 'Varennes',
     province: 'QC',
     postalCode: 'J3X 1P7',
@@ -39,7 +39,7 @@ export const SITE = {
 
   /** Lien Google Maps intégré (page Contact). */
   mapEmbedSrc:
-    'https://maps.google.com/maps?q=772%20Lionel-Boulet%2C%20Varennes%20QC&t=m&z=14&output=embed&iwloc=near',
+    'https://maps.google.com/maps?q=774%20Lionel-Boulet%2C%20Varennes%20QC&t=m&z=14&output=embed&iwloc=near',
 
   hours: [
     { days: 'Lundi au jeudi', time: '8 h à 17 h' },
@@ -72,7 +72,7 @@ export const SITE = {
     'Saint-Amable',
     'Verchères',
     'Contrecœur',
-    'Calixa-Lavallée',
+    'Longueuil',
   ],
 
   /** ===== Bandeau saison des pneus =====

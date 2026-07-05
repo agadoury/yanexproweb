@@ -366,6 +366,6 @@ export const GENERAL_FAQ: ServiceFaq[] = [
   },
   {
     q: 'Où êtes-vous situés?',
-    a: 'Au 772 Bd Lionel-Boulet à Varennes, dans le parc industriel, à proximité de la route 132.',
+    a: 'Au 774 Bd Lionel-Boulet à Varennes, dans le parc industriel, à proximité de la route 132.',
   },
 ];
