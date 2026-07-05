@@ -19,8 +19,10 @@ référencement (SEO), et prêt à accueillir des fonctionnalités interactives
 - **Coordonnées, heures, bandeau « saison des pneus », avis** :
   [`src/config/site.ts`](src/config/site.ts) — un seul fichier met à jour tout le site.
   - Hors saison des pneus : mettre `showTireBanner: false`.
-  - Vrais avis Google : remplacer le contenu de `reviews` puis mettre
-    `reviewsArePlaceholders: false` (retire la note « exemples »).
+  - Avis Google : remplacer le contenu de `reviews` et mettre à jour
+    `googleRating` (note globale et nombre d'avis). Renseigner
+    `googleReviewsUrl` (lien de la fiche Google Maps) fait apparaître le
+    bouton « Voir tous nos avis sur Google ».
 - **Liste des services** : [`src/data/services.ts`](src/data/services.ts).
 - **Textes des pages** : `src/pages/*.astro` (accueil = `index.astro`).
 

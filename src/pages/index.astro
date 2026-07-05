@@ -121,6 +121,11 @@ const PILLARS = [
               Avis Google
             </p>
             <h2 class="section-title reviews__title">Ce que nos clients disent</h2>
+            <p class="reviews__rating">
+              <span class="reviews__rating-stars" aria-hidden="true">★★★★★</span>
+              <strong>{SITE.googleRating.value} sur 5</strong>
+              <span class="reviews__rating-count">· {SITE.googleRating.count} avis Google</span>
+            </p>
           </div>
           <div class="reviews__grid">
             {SITE.reviews.map((rev) => (
@@ -133,8 +138,12 @@ const PILLARS = [
               </div>
             ))}
           </div>
-          {SITE.reviewsArePlaceholders && (
-            <p class="reviews__note">exemples : à remplacer par vos vrais avis Google</p>
+          {SITE.googleReviewsUrl && (
+            <p class="reviews__all">
+              <a href={SITE.googleReviewsUrl} rel="noopener" target="_blank">
+                Voir tous nos avis sur Google →
+              </a>
+            </p>
           )}
         </div>
       </section>
@@ -376,12 +385,39 @@ const PILLARS = [
     font-weight: 700;
   }
 
-  .reviews__note {
-    margin: 28px 0 0;
+  .reviews__rating {
+    margin: 16px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 16px;
+    color: rgba(246, 246, 244, 0.85);
+    flex-wrap: wrap;
+  }
+
+  .reviews__rating-stars {
+    color: var(--star);
+    letter-spacing: 3px;
+    font-size: 17px;
+  }
+
+  .reviews__rating-count {
+    color: rgba(246, 246, 244, 0.55);
+  }
+
+  .reviews__all {
+    margin: 32px 0 0;
     text-align: center;
-    font-size: 12.5px;
-    color: rgba(246, 246, 244, 0.4);
-    font-family: var(--mono);
+  }
+
+  .reviews__all a {
+    color: var(--paper);
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--red-soft);
   }
 
   /* ===== Bandeau contact ===== */

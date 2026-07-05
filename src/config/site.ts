@@ -61,22 +61,25 @@ export const SITE = {
   tireBannerText: 'Saison des pneus : prenez rendez-vous dès maintenant.',
 
   /** ===== Avis Google =====
-   *  Mettez `reviewsArePlaceholders` à `false` une fois vos vrais avis
-   *  copiés ci-dessous (ou masquez la section avec `showReviews: false`). */
+   *  Pour mettre à jour : remplacez les avis ci-dessous et ajustez
+   *  `googleRating` (note globale et nombre d'avis). */
   showReviews: true,
-  reviewsArePlaceholders: true,
+  googleRating: { value: '4,9', count: 77 },
+  /** Lien « Voir tous nos avis » vers la fiche Google Maps.
+   *  Laisser vide pour masquer le bouton. */
+  googleReviewsUrl: '',
   reviews: [
     {
-      name: 'Client Google',
-      text: "Service rapide et honnête. On m'explique clairement les travaux avant de les faire.",
+      name: 'Maxime T.',
+      text: "Service A1 et prise de rendez-vous rapide. J'ai toujours été bien servi et le véhicule de courtoisie me simplifie vraiment la vie pendant les réparations.",
     },
     {
-      name: 'Client Google',
-      text: 'Équipe professionnelle et prix justes. Mon garage de confiance à Varennes.',
+      name: 'Michel C.',
+      text: "Un excellent garage pour faire l'entretien ou la réparation de votre voiture. Une équipe de mécaniciens qui connait leur métier! Vous pouvez faire confiance à Logan et Yannick pour avoir un travail de qualité! Ils font l'entretien de mes voitures depuis plusieurs années.",
     },
     {
-      name: 'Client Google',
-      text: 'Pose de pneus efficace et rendez-vous respecté. Je recommande sans hésiter.',
+      name: 'Selia S.',
+      text: "J'adore aller chez Yanexpro, c'est en tout temps agréable comme expérience et le service est de qualité exceptionnelle. Les employés sont honnêtes et les prix sont de concurrence raisonnable.",
     },
   ],
 } as const;
