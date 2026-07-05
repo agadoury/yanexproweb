@@ -58,6 +58,12 @@ Le site est conçu pour être hébergé sur [Vercel](https://vercel.com) :
 Le fichier [`vercel.json`](vercel.json) active les URL propres
 (`/services` au lieu de `/services.html`) et la mise en cache des ressources.
 
+**Statistiques de visite** : le site charge le script Vercel Web Analytics en
+production. Pour voir les données : projet Vercel → onglet **Analytics** →
+**Enable** (une seule fois). Les visites apparaissent ensuite au fil de l'eau —
+pages vues, provenance, appareils — sans témoins (cookies) ni bannière de
+consentement requise.
+
 ## Référencement (SEO / IA)
 
 Déjà en place :
