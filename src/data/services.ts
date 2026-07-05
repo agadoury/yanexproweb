@@ -22,8 +22,6 @@ export interface Service {
   signs: string[];
   includes: string[];
   faq: ServiceFaq[];
-  /** Slugs des services connexes. */
-  related: string[];
 }
 
 export const SERVICES: Service[] = [
@@ -60,7 +58,6 @@ export const SERVICES: Service[] = [
         a: "Ce n'est pas recommandé : un témoin allumé peut signaler un manque de liquide ou une défaillance du système. Appelez-nous au (450) 652-2121 avant de reprendre la route.",
       },
     ],
-    related: ['direction-suspension', 'pneus', 'alignement'],
   },
   {
     num: '02',
@@ -95,7 +92,6 @@ export const SERVICES: Service[] = [
         a: "Le couple disponible instantanément et le poids de la batterie augmentent l'usure. Une permutation régulière et un alignement précis prolongent la vie de vos pneus.",
       },
     ],
-    related: ['pneus', 'freins', 'refroidissement-air-climatise'],
   },
   {
     num: '03',
@@ -129,7 +125,6 @@ export const SERVICES: Service[] = [
         a: "C'est souvent le signe d'une fuite ou d'une composante percée par la corrosion — fréquent au Québec à cause du sel de déglaçage. Une inspection permet de cibler la pièce à réparer.",
       },
     ],
-    related: ['electronique-mise-au-point', 'injection-electricite'],
   },
   {
     num: '04',
@@ -164,7 +159,6 @@ export const SERVICES: Service[] = [
         a: 'Un véhicule qui rebondit après une bosse, qui penche en virage ou dont les pneus s’usent inégalement. Des amortisseurs en bon état raccourcissent aussi la distance de freinage.',
       },
     ],
-    related: ['alignement', 'freins', 'pneus'],
   },
   {
     num: '05',
@@ -199,7 +193,6 @@ export const SERVICES: Service[] = [
         a: "Des injecteurs encrassés, un capteur défectueux ou une mise au point due sont des causes fréquentes. Un diagnostic électronique cible la source exacte.",
       },
     ],
-    related: ['electronique-mise-au-point', 'refroidissement-air-climatise'],
   },
   {
     num: '06',
@@ -234,7 +227,6 @@ export const SERVICES: Service[] = [
         a: "C'est souvent un manque de réfrigérant ou une fuite dans le circuit. Un entretien du système permet de retrouver un air froid et d'éviter d'endommager le compresseur.",
       },
     ],
-    related: ['injection-electricite', 'electronique-mise-au-point'],
   },
   {
     num: '07',
@@ -267,7 +259,6 @@ export const SERVICES: Service[] = [
         a: "Oui, et rapidement : quelques millimètres de déréglage suffisent pour ruiner un pneu en quelques milliers de kilomètres. L'alignement se rentabilise en durée de vie de pneus.",
       },
     ],
-    related: ['pneus', 'direction-suspension'],
   },
   {
     num: '08',
@@ -300,7 +291,6 @@ export const SERVICES: Service[] = [
         a: 'Bougies, filtres, inspection des systèmes d’allumage et d’alimentation, selon le calendrier du fabricant. Un moteur bien réglé consomme moins et dure plus longtemps.',
       },
     ],
-    related: ['injection-electricite', 'silencieux-echappement'],
   },
   {
     num: '09',
@@ -335,7 +325,6 @@ export const SERVICES: Service[] = [
         a: "Un pneu mal équilibré vibre, use la suspension et s'use prématurément. L'équilibrage fait partie de toute pose bien faite.",
       },
     ],
-    related: ['alignement', 'freins', 'direction-suspension'],
   },
 ];
 
