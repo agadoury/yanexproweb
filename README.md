@@ -71,6 +71,9 @@ URL, sans toucher au site en ligne.
     │   └── site.ts           ⭐ CONFIGURATION CENTRALE (coordonnées, heures, avis…)
     ├── data/
     │   └── services.ts       ⭐ CONTENU DES SERVICES (cartes + 9 pages détaillées + FAQ)
+    ├── content.config.ts     Déclaration de la collection d'articles
+    ├── content/
+    │   └── conseils/         ⭐ ARTICLES de la section Conseils (un fichier .md chacun)
     ├── styles/
     │   └── global.css        Jetons de design, utilitaires, micro-interactions
     ├── layouts/
@@ -90,6 +93,8 @@ URL, sans toucher au site en ligne.
         ├── garage.astro          /garage      Notre garage
         ├── services.astro        /services    Liste des services + FAQ générale
         ├── services/[slug].astro /services/…  Les 9 pages de services (générées)
+        ├── conseils/index.astro  /conseils    Liste des articles (lien au pied de page)
+        ├── conseils/[slug].astro /conseils/…  Pages d'articles (générées des .md)
         ├── rendez-vous.astro     /rendez-vous Formulaire de demande de rendez-vous
         ├── merci.astro           /merci       Confirmation d'envoi (non indexée)
         ├── contact.astro         /contact     Coordonnées, heures, carte
@@ -155,6 +160,32 @@ générale de la page Services.
 
 Directement dans `src/pages/*.astro` — le HTML est lisible et les textes
 faciles à repérer. L'accueil est `index.astro`.
+
+### La section « Conseils » (articles)
+
+Volontairement discrète : accessible par le **pied de page seulement** (pas
+dans le menu principal) — elle existe pour le référencement de longue
+traîne, pas pour la navigation courante. Google la découvre par le lien du
+pied de page et le sitemap.
+
+**Ajouter un article** : créer un fichier `.md` dans
+`src/content/conseils/` (le nom du fichier devient l'URL) avec cet en-tête :
+
+```markdown
+---
+title: "Titre de l'article"
+description: "Résumé d'une ou deux phrases (affiché dans Google)."
+pubDate: 2026-10-01
+---
+
+Le contenu en Markdown : ## pour les sous-titres, [texte](/services/pneus)
+pour les liens internes, **gras**, listes…
+```
+
+La carte sur `/conseils`, la page de l'article, le balisage `BlogPosting`
+et l'entrée de sitemap se créent automatiquement. Conseil : liez chaque
+article vers 2-3 pages de services et terminez par un appel à l'action vers
+`/rendez-vous`.
 
 ### Images et logo
 
@@ -372,8 +403,6 @@ c'est elle qui révèle le vrai flux de travail avant de dépenser :
   intégration au système de billets/gestion (voir plan ci-dessus, les
   logiciels de gestion de garage de l'étape 3 incluent souvent rappels et
   fidélisation).
-- **Section « Conseils »** (blogue) : articles saisonniers pour le
-  référencement de longue traîne.
 - **Auto-réponse au client** après l'envoi du formulaire (option
   `_autoresponse` de FormSubmit — texte à approuver).
 - **Robot conversationnel** (IA) : répond aux questions sur les services et

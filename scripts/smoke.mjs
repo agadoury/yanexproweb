@@ -46,6 +46,14 @@ for (const slug of [
   await check(`services/${slug}.html`, '"@type":"Service"', '"@type":"FAQPage"');
 }
 
+// Section Conseils
+await check('conseils.html', 'Lire l');
+for (const slug of [
+  'preparer-sa-voiture-pour-lhiver', 'quand-faire-verifier-ses-freins', 'bien-choisir-ses-pneus-dhiver',
+]) {
+  await check(`conseils/${slug}.html`, '"@type":"BlogPosting"');
+}
+
 // Fichiers de référencement
 await check('robots.txt', 'Sitemap:');
 await check('llms.txt', 'Garage Yanexpro');

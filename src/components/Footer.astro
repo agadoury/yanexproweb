@@ -1,5 +1,5 @@
 ---
-import { NAV_LINKS, SITE } from '../config/site';
+import { FOOTER_LINKS, SITE } from '../config/site';
 import Logo from './Logo.astro';
 
 const year = new Date().getFullYear();
@@ -19,7 +19,7 @@ const year = new Date().getFullYear();
     <div>
       <p class="site-footer__heading">Navigation</p>
       <div class="site-footer__links">
-        {NAV_LINKS.map((link) => <a href={link.href}>{link.label}</a>)}
+        {FOOTER_LINKS.map((link) => <a href={link.href}>{link.label}</a>)}
       </div>
     </div>
 

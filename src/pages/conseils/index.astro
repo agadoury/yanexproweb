@@ -1,0 +1,125 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('conseils')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('fr-CA', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BaseLayout
+  title="Conseils d'entretien auto | Garage Yanexpro à Varennes"
+  description="Conseils pratiques de nos mécaniciens : préparation hivernale, freins, pneus d'hiver. Pour garder votre véhicule fiable, sécuritaire et économique au Québec."
+>
+  <section class="section-dark">
+    <div class="container page-hero">
+      <p class="eyebrow eyebrow--light">Conseils</p>
+      <h1 class="page-title">Les conseils de nos mécaniciens</h1>
+      <p class="page-hero__lead">
+        Des réponses claires aux questions qu'on nous pose le plus souvent au garage — pour un
+        véhicule fiable, sécuritaire et économique, hiver comme été.
+      </p>
+    </div>
+  </section>
+
+  <section class="container posts">
+    <div class="posts__grid">
+      {
+        posts.map((post) => (
+          <a href={`/conseils/${post.id}`} class="card post-card">
+            <p class="post-card__date">{formatDate(post.data.pubDate)}</p>
+            <h2 class="post-card__title">{post.data.title}</h2>
+            <p class="post-card__desc">{post.data.description}</p>
+            <span class="post-card__more">Lire l'article →</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .page-hero__lead {
+    margin: 20px 0 0;
+    font-size: 18px;
+    line-height: 1.65;
+    color: rgba(246, 246, 244, 0.72);
+    max-width: 640px;
+  }
+
+  .posts {
+    padding-top: 72px;
+    padding-bottom: 80px;
+  }
+
+  .posts__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .post-card {
+    padding: 32px 30px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-card:hover {
+    border-color: var(--red);
+  }
+
+  .post-card__date {
+    margin: 0 0 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--red);
+  }
+
+  .post-card__title {
+    margin: 0 0 10px;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+
+  .post-card__desc {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--gray-3);
+  }
+
+  .post-card__more {
+    margin-top: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--red);
+  }
+
+  @media (max-width: 960px) {
+    .page-hero,
+    .posts {
+      padding-top: 56px;
+    }
+
+    .posts {
+      padding-bottom: 56px;
+    }
+
+    .posts__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

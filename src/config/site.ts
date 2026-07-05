@@ -120,3 +120,10 @@ export const NAV_LINKS = [
   { label: 'Rendez-vous', href: '/rendez-vous' },
   { label: 'Contactez-nous', href: '/contact' },
 ] as const;
+
+/** Le pied de page ajoute la section Conseils (absente du menu principal :
+ *  elle existe pour le référencement, pas pour la navigation courante). */
+export const FOOTER_LINKS = [
+  ...NAV_LINKS,
+  { label: 'Conseils', href: '/conseils' },
+] as const;

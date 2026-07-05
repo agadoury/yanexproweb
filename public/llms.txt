@@ -29,6 +29,7 @@
 - [Services](https://yanexpro.com/services) : liste complète des services et questions fréquentes
 - [Rendez-vous](https://yanexpro.com/rendez-vous) : demande de rendez-vous en ligne
 - [Contact](https://yanexpro.com/contact) : coordonnées, heures d'ouverture et carte
+- [Conseils](https://yanexpro.com/conseils) : articles pratiques de nos mécaniciens (préparation hivernale, freins, pneus d'hiver)
 
 ## Faits utiles
 
