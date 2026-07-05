@@ -1,0 +1,167 @@
+---
+import { SITE } from '../config/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contactez-nous | Garage Yanexpro à Varennes — (450) 652-2121"
+  description="Garage Yanexpro : 772 Bd Lionel-Boulet, Varennes, QC J3X 1P7. Téléphone (450) 652-2121. Ouvert du lundi au jeudi de 8 h à 17 h et le vendredi de 8 h à 12 h (hors saison des pneus)."
+>
+  <!-- ===== En-tête ===== -->
+  <section class="section-dark">
+    <div class="container page-hero">
+      <p class="eyebrow eyebrow--light">Contactez-nous</p>
+      <h1 class="page-title">Passez nous voir à Varennes</h1>
+    </div>
+  </section>
+
+  <!-- ===== Coordonnées + carte ===== -->
+  <section class="container contact">
+    <div class="contact__cards">
+      <div class="card contact__card">
+        <p class="eyebrow contact__label">Téléphone</p>
+        <a href={SITE.phone.href} class="contact__phone">{SITE.phone.display}</a>
+      </div>
+
+      <div class="card contact__card">
+        <p class="eyebrow contact__label">Adresse</p>
+        <p class="contact__address">
+          {SITE.address.street}<br />
+          {SITE.address.city}, {SITE.address.province} {SITE.address.postalCode}
+        </p>
+      </div>
+
+      <div class="card contact__card">
+        <p class="eyebrow contact__label">Courriel</p>
+        <a href={`mailto:${SITE.email}`} class="contact__email">{SITE.email}</a>
+      </div>
+
+      <div class="card contact__card">
+        <p class="eyebrow contact__label contact__label--hours">Nos heures</p>
+        {
+          SITE.hours.map((h, i) => (
+            <div class:list={['contact__hours-row', { 'contact__hours-row--last': i === SITE.hours.length - 1 }]}>
+              <span>{h.days}</span>
+              <span class="contact__hours-time">{h.time}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="contact__map">
+      <iframe
+        src={SITE.mapEmbedSrc}
+        title="Carte — Garage Yanexpro, 772 Bd Lionel-Boulet, Varennes"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen></iframe>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .contact {
+    padding-top: 72px;
+    padding-bottom: 72px;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .contact__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact__card {
+    padding: 30px;
+  }
+
+  .contact__label {
+    margin-bottom: 8px;
+  }
+
+  .contact__label--hours {
+    margin-bottom: 12px;
+  }
+
+  .contact__phone {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .contact__address {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+
+  .contact__email {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .contact__hours-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--card-border);
+    font-size: 15.5px;
+    font-weight: 600;
+  }
+
+  .contact__hours-row--last {
+    border-bottom: 0;
+  }
+
+  .contact__hours-time {
+    color: var(--gray-3);
+    font-weight: 400;
+    text-align: right;
+  }
+
+  .contact__map {
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    min-height: 560px;
+    display: flex;
+  }
+
+  .contact__map iframe {
+    border: 0;
+    width: 100%;
+    flex: 1;
+  }
+
+  @media (max-width: 960px) {
+    .page-hero,
+    .contact {
+      padding-top: 56px;
+      padding-bottom: 56px;
+    }
+
+    .contact {
+      grid-template-columns: 1fr;
+    }
+
+    .contact__map {
+      min-height: 420px;
+    }
+  }
+</style>

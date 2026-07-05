@@ -1,0 +1,160 @@
+---
+import { NAV_LINKS, SITE } from '../config/site';
+import Logo from './Logo.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div>
+      <div class="site-footer__brand">
+        <Logo dark />
+      </div>
+      <p class="site-footer__about">
+        Mécanique auto à Varennes. Membre du réseau UniPro et certifié Bumper to Bumper.
+      </p>
+    </div>
+
+    <div>
+      <p class="site-footer__heading">Navigation</p>
+      <div class="site-footer__links">
+        {NAV_LINKS.map((link) => <a href={link.href}>{link.label}</a>)}
+      </div>
+    </div>
+
+    <div>
+      <p class="site-footer__heading">Nos heures</p>
+      {
+        SITE.hours.map((h) => (
+          <p class="site-footer__hours">
+            {h.days}
+            <br />
+            <span>{h.time}</span>
+          </p>
+        ))
+      }
+    </div>
+
+    <div>
+      <p class="site-footer__heading">Coordonnées</p>
+      <div class="site-footer__links">
+        <span class="site-footer__address">
+          {SITE.address.street}<br />
+          {SITE.address.city}, {SITE.address.province} {SITE.address.postalCode}
+        </span>
+        <a href={SITE.phone.href}>{SITE.phone.display}</a>
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-footer__bottom">
+    <div class="container site-footer__bottom-inner">
+      <span>© {year} {SITE.name}. Tous droits réservés.</span>
+      <span>{SITE.address.city}, Québec</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--ink);
+    color: var(--paper);
+    margin-top: auto;
+  }
+
+  .site-footer__grid {
+    padding-top: 64px;
+    padding-bottom: 40px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr;
+    gap: 48px;
+  }
+
+  .site-footer__brand {
+    margin-bottom: 20px;
+  }
+
+  .site-footer__about {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(246, 246, 244, 0.55);
+    max-width: 260px;
+  }
+
+  .site-footer__heading {
+    margin: 0 0 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(246, 246, 244, 0.45);
+  }
+
+  .site-footer__links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 15px;
+  }
+
+  .site-footer__links a {
+    color: rgba(246, 246, 244, 0.8);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .site-footer__links a:hover {
+    color: #fff;
+  }
+
+  .site-footer__address {
+    color: rgba(246, 246, 244, 0.8);
+    line-height: 1.5;
+  }
+
+  .site-footer__hours {
+    margin: 0 0 8px;
+    font-size: 15px;
+    color: rgba(246, 246, 244, 0.8);
+    line-height: 1.5;
+  }
+
+  .site-footer__hours span {
+    color: rgba(246, 246, 244, 0.55);
+  }
+
+  .site-footer__bottom {
+    border-top: 1px solid rgba(246, 246, 244, 0.1);
+  }
+
+  .site-footer__bottom-inner {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 13px;
+    color: rgba(246, 246, 244, 0.4);
+  }
+
+  @media (max-width: 960px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+
+    .site-footer__bottom-inner {
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+</style>

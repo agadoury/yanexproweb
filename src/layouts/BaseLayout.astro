@@ -1,0 +1,108 @@
+---
+import '@fontsource-variable/archivo';
+import '@fontsource-variable/archivo/wght-italic.css';
+import '../styles/global.css';
+
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import TireBanner from '../components/TireBanner.astro';
+import { SITE } from '../config/site';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname.replace(/\.html$/, ''), Astro.site);
+
+/** Données structurées schema.org — fiche d'entreprise locale (AutoRepair). */
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AutoRepair',
+  '@id': `${SITE.url}/#garage`,
+  name: SITE.name,
+  alternateName: 'Yanexpro Mécanique Auto',
+  description: SITE.description,
+  url: SITE.url,
+  telephone: SITE.phone.e164,
+  email: SITE.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: SITE.address.street,
+    addressLocality: SITE.address.city,
+    addressRegion: SITE.address.province,
+    postalCode: SITE.address.postalCode,
+    addressCountry: SITE.address.country,
+  },
+  openingHoursSpecification: SITE.openingHoursSpecification,
+  founder: {
+    '@type': 'Person',
+    name: SITE.owner,
+  },
+  memberOf: {
+    '@type': 'Organization',
+    name: 'Réseau UniPro',
+  },
+  knowsAbout: [
+    'Freins et freins antiblocage (ABS)',
+    'Véhicules électriques',
+    'Silencieux et échappement',
+    'Direction et suspension',
+    'Injection et électricité',
+    'Refroidissement et air climatisé',
+    'Alignement',
+    'Électronique et mise au point',
+    'Vente et pose de pneus',
+  ],
+  areaServed: ['Varennes', 'Rive-Sud de Montréal', 'Montérégie'],
+  priceRange: '$$',
+  inLanguage: 'fr-CA',
+};
+---
+
+<!doctype html>
+<html lang="fr-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="fr_CA" />
+    <meta name="twitter:card" content="summary" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a href="#contenu" class="skip-link">Aller au contenu</a>
+    <div class="page-shell">
+      <TireBanner />
+      <Header />
+      <main id="contenu">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<style>
+  .page-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1;
+  }
+</style>

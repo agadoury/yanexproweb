@@ -1,0 +1,45 @@
+---
+import { SITE } from '../config/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page introuvable | Garage Yanexpro"
+  description="La page demandée n'existe pas. Retournez à l'accueil du Garage Yanexpro, mécanique auto à Varennes."
+>
+  <section class="section-dark">
+    <div class="container not-found">
+      <p class="eyebrow eyebrow--light">Erreur 404</p>
+      <h1 class="page-title">Cette page n'existe pas</h1>
+      <p class="not-found__text">
+        La page que vous cherchez a peut-être été déplacée. Retournez à l'accueil ou
+        appelez-nous directement.
+      </p>
+      <div class="not-found__actions">
+        <a href="/" class="btn btn--red">Retour à l'accueil</a>
+        <a href={SITE.phone.href} class="btn btn--outline-light">{SITE.phone.display}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    padding-top: 96px;
+    padding-bottom: 120px;
+  }
+
+  .not-found__text {
+    margin: 20px 0 36px;
+    font-size: 18px;
+    line-height: 1.65;
+    color: rgba(246, 246, 244, 0.72);
+    max-width: 520px;
+  }
+
+  .not-found__actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+</style>

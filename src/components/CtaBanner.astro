@@ -1,0 +1,73 @@
+---
+import { SITE } from '../config/site';
+
+/**
+ * Bandeau rouge d'appel à l'action avec le numéro de téléphone.
+ */
+interface Props {
+  title: string;
+  subtitle?: string;
+  /** Rembourrage réduit (page Services). */
+  compact?: boolean;
+}
+
+const { title, subtitle, compact = false } = Astro.props;
+---
+
+<div class:list={['cta-banner', { 'cta-banner--compact': compact }]}>
+  <div>
+    {
+      compact ? (
+        <p class="cta-banner__title-compact">{title}</p>
+      ) : (
+        <h2 class="cta-banner__title">{title}</h2>
+      )
+    }
+    {subtitle && <p class="cta-banner__subtitle">{subtitle}</p>}
+  </div>
+  <a href={SITE.phone.href} class="btn btn--white">{SITE.phone.display}</a>
+</div>
+
+<style>
+  .cta-banner {
+    background: var(--red);
+    color: #fff;
+    border-radius: var(--radius-lg);
+    padding: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .cta-banner--compact {
+    padding: 44px 48px;
+  }
+
+  .cta-banner__title {
+    margin: 0 0 10px;
+    font-size: clamp(26px, 3.5vw, 32px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .cta-banner__title-compact {
+    margin: 0;
+    font-size: clamp(19px, 2.5vw, 22px);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+
+  .cta-banner__subtitle {
+    margin: 0;
+    font-size: 16.5px;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  @media (max-width: 640px) {
+    .cta-banner {
+      padding: 36px 28px;
+    }
+  }
+</style>

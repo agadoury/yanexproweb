@@ -1,0 +1,116 @@
+---
+import CtaBanner from '../components/CtaBanner.astro';
+import { SERVICES } from '../data/services';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Nos services | Garage Yanexpro — entretien autos et camions légers à Varennes"
+  description="Freins et ABS, véhicules électriques, silencieux et échappement, direction et suspension, alignement, air climatisé, électronique, vente et pose de pneus. Garage Yanexpro à Varennes : (450) 652-2121."
+>
+  <!-- ===== En-tête ===== -->
+  <section class="section-dark">
+    <div class="container page-hero">
+      <p class="eyebrow eyebrow--light">Nos services</p>
+      <h1 class="page-title">Entretien d'automobiles et de camions légers</h1>
+      <p class="page-hero__lead">
+        Yanexpro est spécialisé dans l'entretien d'automobiles et de camions légers. Nous
+        respectons les normes et directives d'entretien des manufacturiers automobiles.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Liste des services ===== -->
+  <section class="container services">
+    <div class="services__grid">
+      {
+        SERVICES.map((svc) => (
+          <article class="card service-card">
+            <p class="service-card__num">{svc.num}</p>
+            <h2 class="service-card__title">{svc.title}</h2>
+            <p class="service-card__desc">{svc.desc}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="services__cta">
+      <CtaBanner title="Votre service ne figure pas dans la liste? Appelez-nous." compact />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .page-hero__lead {
+    margin: 20px 0 0;
+    font-size: 18px;
+    line-height: 1.65;
+    color: rgba(246, 246, 244, 0.72);
+    max-width: 640px;
+  }
+
+  .services {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .service-card {
+    padding: 32px 30px;
+  }
+
+  .service-card__num {
+    margin: 0 0 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--red);
+  }
+
+  .service-card__title {
+    margin: 0 0 10px;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .service-card__desc {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--gray-3);
+  }
+
+  .services__cta {
+    margin-top: 56px;
+  }
+
+  @media (max-width: 960px) {
+    .page-hero,
+    .services {
+      padding-top: 56px;
+      padding-bottom: 56px;
+    }
+
+    .services__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .services__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

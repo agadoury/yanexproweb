@@ -1,0 +1,45 @@
+---
+import { SITE } from '../config/site';
+---
+
+{
+  SITE.showTireBanner && (
+    <div class="tire-banner">
+      <span class="tire-banner__dot" aria-hidden="true" />
+      <span>{SITE.tireBannerText}</span>
+      <a href={SITE.phone.href}>{SITE.phone.display}</a>
+    </div>
+  )
+}
+
+<style>
+  .tire-banner {
+    background: var(--ink);
+    color: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 10px 20px;
+    font-size: 13.5px;
+    letter-spacing: 0.02em;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+
+  .tire-banner__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+    flex: none;
+  }
+
+  .tire-banner a {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    white-space: nowrap;
+  }
+</style>

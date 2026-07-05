@@ -1,0 +1,143 @@
+---
+import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import { SITE } from '../config/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Notre garage | Garage Yanexpro à Varennes — certifié Bumper to Bumper"
+  description="Découvrez le Garage Yanexpro, centre de l'automobile certifié Bumper to Bumper situé dans le parc industriel de Varennes, près de la route 132. Entretien préventif selon les normes des manufacturiers."
+>
+  <!-- ===== En-tête ===== -->
+  <section class="section-dark">
+    <div class="container page-hero">
+      <p class="eyebrow eyebrow--light">Notre garage</p>
+      <h1 class="page-title page-hero__title">
+        L'excellence du Garage Yanexpro, certifié Bumper to Bumper
+      </h1>
+    </div>
+  </section>
+
+  <!-- ===== Présentation ===== -->
+  <section class="container about">
+    <div>
+      <p class="about__lead">
+        Notre centre de l'automobile est situé dans le parc industriel de Varennes, à proximité de
+        la route 132. Faites confiance à l'équipe de {SITE.owner}, propriétaire du {SITE.name}.
+      </p>
+      <p class="about__text">
+        L'entretien automobile est essentiel afin d'assurer la durée de vie de votre véhicule. Il
+        reste ainsi plus fiable, sécuritaire et économique. Le programme d'entretien préventif du
+        {SITE.name} vous permettra de conserver votre voiture plus longtemps et en meilleur état.
+      </p>
+      <p class="about__text about__text--last">
+        Nous respectons les normes des manufacturiers automobiles et vous proposons les entretiens
+        recommandés par les fabricants.
+      </p>
+      <div class="about__cards">
+        <div class="card about__card">
+          <p class="about__card-title">Certification Bumper to Bumper</p>
+          <p class="about__card-text">Un gage de qualité reconnu partout au Québec.</p>
+        </div>
+        <div class="card about__card">
+          <p class="about__card-title">Entretien préventif</p>
+          <p class="about__card-text">
+            Un programme complet selon les recommandations des fabricants.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="about__photos">
+      <PhotoPlaceholder label={`photo : ${SITE.owner} et son équipe`} ratio="4/3" />
+      <PhotoPlaceholder label="photo : intérieur de l'atelier" ratio="16/8" />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .page-hero__title {
+    max-width: 720px;
+  }
+
+  .about {
+    padding-top: 72px;
+    padding-bottom: 72px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .about__lead {
+    margin: 0 0 24px;
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--gray-1);
+  }
+
+  .about__text {
+    margin: 0 0 24px;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--gray-2);
+  }
+
+  .about__text--last {
+    margin-bottom: 40px;
+  }
+
+  .about__cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .about__card {
+    padding: 28px 26px;
+  }
+
+  .about__card-title {
+    margin: 0 0 8px;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--ink);
+  }
+
+  .about__card-text {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--gray-3);
+  }
+
+  .about__photos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  @media (max-width: 960px) {
+    .page-hero {
+      padding-top: 56px;
+      padding-bottom: 56px;
+    }
+
+    .about {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding-top: 56px;
+      padding-bottom: 56px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .about__cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

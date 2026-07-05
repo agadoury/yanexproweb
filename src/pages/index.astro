@@ -1,0 +1,434 @@
+---
+import CtaBanner from '../components/CtaBanner.astro';
+import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import { SITE } from '../config/site';
+import { HOME_SERVICES } from '../data/services';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const PILLARS = [
+  {
+    title: 'Professionnel',
+    text: 'Fiez-vous à nos professionnels pour les réparations sur votre véhicule.',
+  },
+  {
+    title: 'Qualité',
+    text: "Notre mission : toujours être à la fine pointe, à l'affût des nouveautés et prêts à vous servir.",
+  },
+  {
+    title: 'Service',
+    text: 'Toujours donner un service hors pair! Nous faisons fièrement partie du réseau UniPro.',
+  },
+];
+---
+
+<BaseLayout
+  title="Garage Yanexpro | Mécanique auto à Varennes — certifié Bumper to Bumper"
+  description="Garage de mécanique auto à Varennes : freins, suspension, alignement, pneus, véhicules électriques et plus. Membre du réseau UniPro, certifié Bumper to Bumper. Appelez au (450) 652-2121."
+>
+  <!-- ===== Héros ===== -->
+  <section class="section-dark">
+    <div class="container hero">
+      <div>
+        <p class="eyebrow eyebrow--light">Mécanique auto à Varennes</p>
+        <h1 class="hero__title">Votre véhicule entre les mains de vrais professionnels</h1>
+        <p class="hero__lead">
+          Notre mission : toujours être à la fine pointe, à l'affût des nouveautés et prêts à vous
+          servir. Nous respectons des normes de qualité élevées pour votre véhicule.
+        </p>
+        <div class="hero__actions">
+          <a href={SITE.phone.href} class="btn btn--red">Appelez-nous maintenant</a>
+          <a href="/services" class="btn btn--outline-light">Voir nos services</a>
+        </div>
+        <div class="hero__badges">
+          <div>
+            <p class="hero__badge-title">Réseau UniPro</p>
+            <p class="hero__badge-sub">Membre fier du réseau</p>
+          </div>
+          <div>
+            <p class="hero__badge-title">Bumper to Bumper</p>
+            <p class="hero__badge-sub">Garage certifié</p>
+          </div>
+          <div>
+            <p class="hero__badge-title">Varennes</p>
+            <p class="hero__badge-sub">Près de la route 132</p>
+          </div>
+        </div>
+      </div>
+      <PhotoPlaceholder label="photo : atelier / véhicule sur pont" ratio="4/3.4" dark />
+    </div>
+  </section>
+
+  <!-- ===== Piliers ===== -->
+  <section class="container pillars">
+    <div class="pillars__grid">
+      {
+        PILLARS.map((pillar) => (
+          <div class="card pillar">
+            <p class="eyebrow">{pillar.title}</p>
+            <p class="pillar__text">{pillar.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ===== Aperçu des services ===== -->
+  <section class="container services-preview">
+    <div class="services-preview__head">
+      <div>
+        <p class="eyebrow">Nos services</p>
+        <h2 class="section-title">Entretien complet, autos et camions légers</h2>
+      </div>
+      <a href="/services" class="link-arrow">Tous nos services →</a>
+    </div>
+    <div class="services-preview__grid">
+      {
+        HOME_SERVICES.map((svc) => (
+          <div class="card service-chip">
+            <span class="service-chip__dot" aria-hidden="true" />
+            <span>{svc}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ===== Bloc garage ===== -->
+  <section class="container garage-block-wrap">
+    <div class="card garage-block">
+      <PhotoPlaceholder label="photo : façade du garage" minHeight="340px" />
+      <div class="garage-block__body">
+        <p class="eyebrow">Notre garage</p>
+        <h2 class="section-title garage-block__title">
+          Un centre de l'automobile certifié Bumper to Bumper
+        </h2>
+        <p class="garage-block__text">
+          Situé dans le parc industriel de Varennes, à proximité de la route 132. Faites confiance
+          à l'équipe de {SITE.owner}, propriétaire du {SITE.name}.
+        </p>
+        <a href="/notre-garage" class="link-arrow">Découvrir le garage →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Avis ===== -->
+  {
+    SITE.showReviews && (
+      <section class="section-dark reviews">
+        <div class="container">
+          <div class="reviews__head">
+            <p class="eyebrow eyebrow--light" style="font-size: 12px;">
+              Avis Google
+            </p>
+            <h2 class="section-title reviews__title">Ce que nos clients disent</h2>
+          </div>
+          <div class="reviews__grid">
+            {SITE.reviews.map((rev) => (
+              <div class="review-card">
+                <div class="review-card__stars" aria-label="5 étoiles sur 5">
+                  ★★★★★
+                </div>
+                <p class="review-card__text">{rev.text}</p>
+                <p class="review-card__name">{rev.name}</p>
+              </div>
+            ))}
+          </div>
+          {SITE.reviewsArePlaceholders && (
+            <p class="reviews__note">exemples : à remplacer par vos vrais avis Google</p>
+          )}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- ===== Bandeau contact ===== -->
+  <section class="container contact-cta">
+    <CtaBanner
+      title="Un bruit suspect? Une lumière au tableau de bord?"
+      subtitle="Appelez-nous, notre équipe vous répond du lundi au vendredi."
+    />
+  </section>
+</BaseLayout>
+
+<style>
+  /* ===== Héros ===== */
+
+  .hero {
+    padding-top: 88px;
+    padding-bottom: 96px;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .hero__title {
+    margin: 0 0 24px;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.05;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  .hero__lead {
+    margin: 0 0 36px;
+    font-size: 18px;
+    line-height: 1.65;
+    color: rgba(246, 246, 244, 0.72);
+    max-width: 520px;
+  }
+
+  .hero__actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .hero__badges {
+    display: flex;
+    gap: 32px;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--light-border);
+    flex-wrap: wrap;
+  }
+
+  .hero__badge-title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--paper);
+  }
+
+  .hero__badge-sub {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: rgba(246, 246, 244, 0.55);
+  }
+
+  /* ===== Piliers ===== */
+
+  .pillars {
+    padding-top: 88px;
+    padding-bottom: 40px;
+  }
+
+  .pillars__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .pillar {
+    padding: 36px 32px;
+  }
+
+  .pillar :global(.eyebrow) {
+    margin-bottom: 14px;
+  }
+
+  .pillar__text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--gray-2);
+  }
+
+  /* ===== Aperçu des services ===== */
+
+  .services-preview {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .services-preview__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 36px;
+  }
+
+  .services-preview__head .link-arrow {
+    flex: none;
+  }
+
+  .services-preview__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .service-chip {
+    padding: 26px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 16.5px;
+    font-weight: 600;
+    color: var(--ink-2);
+  }
+
+  .service-chip__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    background: var(--red);
+    flex: none;
+  }
+
+  /* ===== Bloc garage ===== */
+
+  .garage-block-wrap {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .garage-block {
+    border-radius: var(--radius-lg);
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    overflow: hidden;
+  }
+
+  .garage-block :global(.photo-placeholder) {
+    border: 0;
+    border-radius: 0;
+  }
+
+  .garage-block__body {
+    padding: 56px;
+  }
+
+  .garage-block__title {
+    margin-bottom: 18px;
+    font-size: clamp(26px, 3.5vw, 32px);
+  }
+
+  .garage-block__text {
+    margin: 0 0 28px;
+    font-size: 16.5px;
+    line-height: 1.7;
+    color: var(--gray-2);
+  }
+
+  /* ===== Avis ===== */
+
+  .reviews {
+    margin-top: 40px;
+  }
+
+  .reviews .container {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .reviews__head {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .reviews__title {
+    color: var(--paper);
+  }
+
+  .reviews__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .review-card {
+    background: rgba(246, 246, 244, 0.05);
+    border: 1px solid var(--light-border);
+    border-radius: var(--radius);
+    padding: 32px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .review-card__stars {
+    color: var(--star);
+    font-size: 16px;
+    letter-spacing: 3px;
+  }
+
+  .review-card__text {
+    margin: 0;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: rgba(246, 246, 244, 0.82);
+    font-style: italic;
+  }
+
+  .review-card__name {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .reviews__note {
+    margin: 28px 0 0;
+    text-align: center;
+    font-size: 12.5px;
+    color: rgba(246, 246, 244, 0.4);
+    font-family: var(--mono);
+  }
+
+  /* ===== Bandeau contact ===== */
+
+  .contact-cta {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  /* ===== Adaptation mobile ===== */
+
+  @media (max-width: 960px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding-top: 56px;
+      padding-bottom: 64px;
+    }
+
+    .pillars {
+      padding-top: 56px;
+    }
+
+    .pillars__grid,
+    .services-preview__grid,
+    .reviews__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .garage-block {
+      grid-template-columns: 1fr;
+    }
+
+    .garage-block__body {
+      padding: 40px 32px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .pillars__grid,
+    .services-preview__grid,
+    .reviews__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .services-preview__head {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .contact-cta {
+      padding-top: 56px;
+      padding-bottom: 56px;
+    }
+  }
+</style>

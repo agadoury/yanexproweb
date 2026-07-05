@@ -1,0 +1,48 @@
+---
+import { SITE } from '../config/site';
+
+interface Props {
+  /** Variante pour fond sombre (pied de page). */
+  dark?: boolean;
+}
+
+const { dark = false } = Astro.props;
+---
+
+<span class:list={['logo', { 'logo--dark': dark }]}>
+  <span class="logo__name">{SITE.shortName}</span>
+  <span class="logo__tagline">{SITE.tagline}</span>
+</span>
+
+<style>
+  .logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+
+  .logo__name {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--red);
+    font-style: italic;
+  }
+
+  .logo__tagline {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    color: var(--gray-1);
+    margin-top: 4px;
+  }
+
+  .logo--dark .logo__name {
+    font-size: 24px;
+  }
+
+  .logo--dark .logo__tagline {
+    font-size: 10px;
+    color: rgba(246, 246, 244, 0.7);
+  }
+</style>
