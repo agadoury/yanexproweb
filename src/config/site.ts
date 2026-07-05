@@ -59,8 +59,17 @@ export const SITE = {
   owner: 'Yannick McGinnis',
 
   /** ===== Bandeau saison des pneus =====
-   *  Mettez `showTireBanner` à `false` hors saison. */
-  showTireBanner: true,
+   *  'auto'     : s'affiche automatiquement pendant les saisons ci-dessous
+   *  'toujours' : toujours visible
+   *  'jamais'   : jamais visible */
+  tireBannerMode: 'auto' as 'auto' | 'toujours' | 'jamais',
+  /** Périodes d'affichage (mois-jour, inclusives) :
+   *  automne = pose des pneus d'hiver (obligatoires au Québec dès le 1er déc.),
+   *  printemps = retour aux pneus d'été (à partir du 15 mars). */
+  tireSeasons: [
+    { from: '09-15', to: '12-01' },
+    { from: '03-15', to: '05-31' },
+  ],
   tireBannerText: 'Saison des pneus : prenez rendez-vous dès maintenant.',
 
   /** ===== Avis Google =====

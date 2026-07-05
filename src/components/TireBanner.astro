@@ -1,14 +1,41 @@
 ---
 import { SITE } from '../config/site';
+
+/**
+ * Bandeau « saison des pneus ».
+ * En mode 'auto', le bandeau est rendu masqué puis révélé par un script
+ * bloquant (aucun clignotement) si la date du visiteur tombe dans une des
+ * périodes de SITE.tireSeasons — le site étant statique, la décision doit
+ * se prendre dans le navigateur, pas au moment du déploiement.
+ */
+const mode = SITE.tireBannerMode;
+
+const revealScript = `(() => {
+  const banner = document.getElementById('tire-banner');
+  if (!banner) return;
+  const seasons = JSON.parse(banner.dataset.seasons || '[]');
+  const now = new Date();
+  const mmdd =
+    String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+  if (seasons.some((s) => s.from <= mmdd && mmdd <= s.to)) banner.hidden = false;
+})();`;
 ---
 
 {
-  SITE.showTireBanner && (
-    <div class="tire-banner">
-      <span class="tire-banner__dot" aria-hidden="true" />
-      <span>{SITE.tireBannerText}</span>
-      <a href={SITE.phone.href}>{SITE.phone.display}</a>
-    </div>
+  mode !== 'jamais' && (
+    <>
+      <div
+        class="tire-banner"
+        id="tire-banner"
+        hidden={mode === 'auto'}
+        data-seasons={JSON.stringify(SITE.tireSeasons)}
+      >
+        <span class="tire-banner__dot" aria-hidden="true" />
+        <span>{SITE.tireBannerText}</span>
+        <a href={SITE.phone.href}>{SITE.phone.display}</a>
+      </div>
+      {mode === 'auto' && <script is:inline set:html={revealScript} />}
+    </>
   )
 }
 
@@ -25,6 +52,10 @@ import { SITE } from '../config/site';
     letter-spacing: 0.02em;
     text-align: center;
     flex-wrap: wrap;
+  }
+
+  .tire-banner[hidden] {
+    display: none;
   }
 
   .tire-banner__dot {

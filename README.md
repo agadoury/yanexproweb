@@ -18,7 +18,9 @@ référencement (SEO), et prêt à accueillir des fonctionnalités interactives
 
 - **Coordonnées, heures, bandeau « saison des pneus », avis** :
   [`src/config/site.ts`](src/config/site.ts) — un seul fichier met à jour tout le site.
-  - Hors saison des pneus : mettre `showTireBanner: false`.
+  - Bandeau « saison des pneus » : s'affiche automatiquement du 15 septembre
+    au 1er décembre et du 15 mars au 31 mai (`tireSeasons`). Pour forcer :
+    `tireBannerMode: 'toujours'` ou `'jamais'`.
   - Avis Google : remplacer le contenu de `reviews` et mettre à jour
     `googleRating` (note globale et nombre d'avis). Renseigner
     `googleReviewsUrl` (lien de la fiche Google Maps) fait apparaître le
