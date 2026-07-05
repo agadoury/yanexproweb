@@ -54,7 +54,14 @@ const PILLARS = [
           </div>
         </div>
       </div>
-      <PhotoPlaceholder label="photo : atelier / véhicule sur pont" ratio="4/3.4" dark />
+      <img
+        src="/images/atelier-vehicule-sur-pont.webp"
+        alt="Mécanicien travaillant sous un véhicule monté sur un pont élévateur dans l'atelier du Garage Yanexpro"
+        width="680"
+        height="451"
+        class="hero__photo"
+        fetchpriority="high"
+      />
     </div>
   </section>
 
@@ -215,6 +222,15 @@ const PILLARS = [
     margin: 4px 0 0;
     font-size: 13px;
     color: rgba(246, 246, 244, 0.55);
+  }
+
+  .hero__photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/3.4;
+    object-fit: cover;
+    border: 1px solid var(--light-border);
+    border-radius: var(--radius);
   }
 
   /* ===== Piliers ===== */
