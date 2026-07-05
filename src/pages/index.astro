@@ -1,6 +1,5 @@
 ---
 import CtaBanner from '../components/CtaBanner.astro';
-import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
 import { SITE } from '../config/site';
 import { HOME_SERVICES } from '../data/services';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -102,7 +101,15 @@ const PILLARS = [
   <!-- ===== Bloc garage ===== -->
   <section class="container garage-block-wrap">
     <div class="card garage-block">
-      <PhotoPlaceholder label="photo : façade du garage" minHeight="340px" />
+      <div class="garage-block__logo">
+        <img
+          src="/images/bumper-to-bumper.png"
+          alt="Logo Bumper to Bumper — garage certifié"
+          width="627"
+          height="318"
+          loading="lazy"
+        />
+      </div>
       <div class="garage-block__body">
         <p class="eyebrow">Notre garage</p>
         <h2 class="section-title garage-block__title">
@@ -328,9 +335,18 @@ const PILLARS = [
     overflow: hidden;
   }
 
-  .garage-block :global(.photo-placeholder) {
-    border: 0;
-    border-radius: 0;
+  .garage-block__logo {
+    background: #ee2e2b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 340px;
+    padding: 40px;
+  }
+
+  .garage-block__logo img {
+    width: min(340px, 100%);
+    height: auto;
   }
 
   .garage-block__body {
