@@ -364,6 +364,14 @@ c'est elle qui révèle le vrai flux de travail avant de dépenser :
 
 ### Autres idées en attente
 
+- **Programme de fidélité** : récompenser les clients réguliers (p. ex.
+  rabais après X visites, rappel d'entretien saisonnier, avantage sur la
+  pose de pneus). À définir : la mécanique d'affaires d'abord (carte
+  physique? points? rabais simple?), puis le volet site web — page
+  dédiée expliquant le programme, inscription par formulaire, et à terme
+  intégration au système de billets/gestion (voir plan ci-dessus, les
+  logiciels de gestion de garage de l'étape 3 incluent souvent rappels et
+  fidélisation).
 - **Section « Conseils »** (blogue) : articles saisonniers pour le
   référencement de longue traîne.
 - **Auto-réponse au client** après l'envoi du formulaire (option
