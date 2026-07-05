@@ -56,6 +56,8 @@ URL, sans toucher au site en ligne.
 ├── vercel.json               Configuration Vercel (URLs propres, en-têtes de sécurité, cache)
 ├── .github/workflows/ci.yml  Intégration continue (build + vérifications à chaque push)
 ├── scripts/smoke.mjs         Vérifications de fumée exécutées par la CI
+├── scripts/audit-a11y.mjs    Audit d'accessibilité WCAG AA (axe) sur le site construit
+├── scripts/logo-variants.py  Régénère favicons, variante claire et image de partage
 ├── public/                   Fichiers servis tels quels
 │   ├── favicon.png           Icône d'onglet (emblème du logo)
 │   ├── apple-touch-icon.png  Icône d'écran d'accueil iPhone
@@ -315,9 +317,9 @@ en-têtes de sécurité (HSTS, nosniff, referrer, permissions), en-tête
 
 **Qualité vérifiée** :
 
-- **Accessibilité** : zéro violation WCAG 2.1 AA (audit axe sur les 8 types
-  de pages). Pour re-vérifier après une refonte visuelle : audit axe via
-  Playwright sur le site construit.
+- **Accessibilité** : zéro violation WCAG 2.1 AA sur tous les types de
+  pages. Pour re-vérifier après un changement visuel :
+  `node scripts/audit-a11y.mjs` (après `npm run build`).
 - **Intégration continue** : chaque push reconstruit le site et exécute
   `scripts/smoke.mjs` (pages présentes, données structurées, sitemap
   correct). Un échec apparaît en rouge dans l'onglet Actions de GitHub —
