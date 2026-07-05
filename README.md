@@ -318,6 +318,50 @@ en-tête « noindex » pour les hôtes vercel.app.
 
 ---
 
+## Backlog — évolutions envisagées
+
+### Suivi des demandes de rendez-vous (système de billets)
+
+Objectif : transformer les courriels du formulaire en un tableau de suivi
+pour prioriser le travail. Plan en trois étapes — **ne pas sauter l'étape 1**,
+c'est elle qui révèle le vrai flux de travail avant de dépenser :
+
+1. **Trello alimenté par courriel** (gratuit, aucun code, ~15 min).
+   Chaque tableau Trello possède une adresse courriel privée; un filtre
+   Gmail retransfère automatiquement les courriels dont le sujet contient
+   « Rendez-vous : » et chaque demande devient une carte (le sujet structuré
+   « Rendez-vous : service — nom » fait un titre de carte parfait).
+   Colonnes suggérées : Nouvelles demandes → À rappeler → Confirmé →
+   En atelier → Terminé. Les courriels continuent d'arriver dans Gmail :
+   réversible sans perte.
+2. **Pipeline sur mesure** (une demi-journée de développement, quasi
+   gratuit). Le formulaire soumet vers une fonction Vercel qui écrit chaque
+   demande dans Airtable : vrai kanban avec statuts, horodatage, filtres par
+   type de service, rapports simples — la notification courriel est
+   conservée. Pertinent quand le volume justifie du reporting.
+3. **Logiciel de gestion de garage** (Shopmonkey, Tekmetric ou équivalent,
+   ~150 $ US+/mois). La destination finale : rendez-vous → bon de travail →
+   soumission → facture → rappels clients. À considérer quand le volume de
+   demandes le justifie; le formulaire du site pourra alors y verser
+   directement.
+
+### Autres idées en attente
+
+- **Section « Conseils »** (blogue) : articles saisonniers pour le
+  référencement de longue traîne.
+- **Auto-réponse au client** après l'envoi du formulaire (option
+  `_autoresponse` de FormSubmit — texte à approuver).
+- **Robot conversationnel** (IA) : répond aux questions sur les services et
+  les heures, dirige vers l'appel ou le formulaire. Nécessite une clé API et
+  une petite fonction serveur; à envisager après le lancement, quand les
+  statistiques montreront où les visiteurs hésitent.
+- **Version anglaise** (`/en/`) avec balises hreflang, si la clientèle
+  anglophone le justifie.
+- **Courriel de domaine** (`info@yanexpro.com`) redirigé vers Gmail — plus
+  professionnel que l'adresse Hotmail/Gmail sur le site et l'impression.
+- **Compteur sans témoins des clics téléphone** (GoatCounter ou Plausible)
+  si l'écart de consentement GA4 devient gênant en pratique.
+
 ## Choix techniques
 
 - **Astro (site statique)** : pages HTML pures, quasi aucun JavaScript →
