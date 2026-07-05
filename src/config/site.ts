@@ -23,6 +23,9 @@ export const SITE = {
   /** Adresse qui reçoit les demandes de rendez-vous du formulaire. */
   bookingEmail: 'yanexprogarage@gmail.com',
 
+  /** Google Analytics 4 — chargé seulement après consentement (Loi 25). */
+  gaMeasurementId: 'G-ERNW1YS7R9',
+
   address: {
     street: '772 Bd Lionel-Boulet',
     city: 'Varennes',

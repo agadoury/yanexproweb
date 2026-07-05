@@ -1,0 +1,150 @@
+---
+import { SITE } from '../config/site';
+
+/**
+ * Google Analytics 4, conforme à la Loi 25 (Québec) :
+ * aucun témoin n'est déposé avant le consentement. Le choix du visiteur
+ * est mémorisé (localStorage) et peut être modifié via le lien
+ * « Gestion des témoins » du pied de page (attribut data-consent-open).
+ *
+ * Événements envoyés une fois GA actif :
+ *   - appel_telephone   : clic sur un lien tel:
+ *   - rendezvous_envoye : arrivée sur /merci (formulaire soumis)
+ */
+const gaId = SITE.gaMeasurementId;
+---
+
+<div class="consent" id="consent-banner" hidden>
+  <p class="consent__text">
+    Nous utilisons des témoins (cookies) uniquement pour mesurer l'audience du site.
+  </p>
+  <div class="consent__actions">
+    <button type="button" id="consent-accept" class="consent__accept">Accepter</button>
+    <button type="button" id="consent-refuse" class="consent__refuse">Refuser</button>
+  </div>
+</div>
+
+<script is:inline define:vars={{ gaId }}>
+  const KEY = 'yx-consent';
+  const banner = document.getElementById('consent-banner');
+  let loaded = false;
+
+  function loadGA() {
+    if (loaded || !gaId) return;
+    loaded = true;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function gtag() {
+      window.dataLayer.push(arguments);
+    };
+    window.gtag('js', new Date());
+    window.gtag('config', gaId);
+
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+    document.head.appendChild(s);
+
+    // Conversion : clic sur le numéro de téléphone
+    document.addEventListener('click', (e) => {
+      const tel = e.target instanceof Element && e.target.closest('a[href^="tel:"]');
+      if (tel) window.gtag('event', 'appel_telephone', { page: location.pathname });
+    });
+
+    // Conversion : demande de rendez-vous envoyée (page de confirmation)
+    if (location.pathname.replace(/\.html$/, '').replace(/\/$/, '') === '/merci') {
+      window.gtag('event', 'rendezvous_envoye');
+    }
+  }
+
+  const choice = localStorage.getItem(KEY);
+  if (choice === 'granted') loadGA();
+  else if (!choice && banner) banner.hidden = false;
+
+  document.getElementById('consent-accept')?.addEventListener('click', () => {
+    localStorage.setItem(KEY, 'granted');
+    if (banner) banner.hidden = true;
+    loadGA();
+  });
+
+  document.getElementById('consent-refuse')?.addEventListener('click', () => {
+    localStorage.setItem(KEY, 'denied');
+    if (banner) banner.hidden = true;
+  });
+
+  // Réouverture depuis « Gestion des témoins » (pied de page)
+  document.addEventListener('click', (e) => {
+    if (e.target instanceof Element && e.target.closest('[data-consent-open]') && banner) {
+      banner.hidden = false;
+    }
+  });
+</script>
+
+<style>
+  .consent {
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+    z-index: 70;
+    max-width: 420px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+    padding: 20px 22px;
+  }
+
+  .consent[hidden] {
+    display: none;
+  }
+
+  .consent__text {
+    margin: 0 0 14px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(246, 246, 244, 0.85);
+  }
+
+  .consent__actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  .consent__accept,
+  .consent__refuse {
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .consent__accept {
+    background: var(--red);
+    color: #fff;
+    border: 0;
+  }
+
+  .consent__accept:hover {
+    background: var(--red-dark);
+  }
+
+  .consent__refuse {
+    background: none;
+    color: var(--paper);
+    border: 1px solid rgba(246, 246, 244, 0.35);
+  }
+
+  .consent__refuse:hover {
+    border-color: var(--paper);
+  }
+
+  @media (max-width: 960px) {
+    .consent {
+      right: 16px;
+      max-width: none;
+      bottom: calc(16px + env(safe-area-inset-bottom));
+    }
+  }
+</style>

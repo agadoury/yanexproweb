@@ -51,7 +51,12 @@ const year = new Date().getFullYear();
 
   <div class="site-footer__bottom">
     <div class="container site-footer__bottom-inner">
-      <span>© {year} {SITE.name}. Tous droits réservés.</span>
+      <span>
+        © {year} {SITE.name}. Tous droits réservés. ·
+        <button type="button" class="site-footer__consent" data-consent-open>
+          Gestion des témoins
+        </button>
+      </span>
       <span>{SITE.address.city}, Québec</span>
     </div>
   </div>
@@ -138,6 +143,22 @@ const year = new Date().getFullYear();
     gap: 16px;
     font-size: 13px;
     color: rgba(246, 246, 244, 0.4);
+  }
+
+  .site-footer__consent {
+    background: none;
+    border: 0;
+    padding: 0;
+    font-family: var(--font);
+    font-size: 13px;
+    color: rgba(246, 246, 244, 0.4);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+  }
+
+  .site-footer__consent:hover {
+    color: rgba(246, 246, 244, 0.7);
   }
 
   @media (max-width: 960px) {
