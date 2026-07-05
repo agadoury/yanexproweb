@@ -1,7 +1,14 @@
 ---
 import { SITE } from '../config/site';
-import { SERVICES } from '../data/services';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+/** Catégories simples pour la demande — le détail se règle au téléphone. */
+const SERVICE_OPTIONS = [
+  'Changement de pneus',
+  'Entretien régulier',
+  'Réparation ou diagnostic (bruit, témoin allumé…)',
+  'Autre / je ne suis pas certain',
+];
 
 /**
  * Formulaire de demande de rendez-vous.
@@ -76,8 +83,7 @@ const FORM_ACTION = `https://formsubmit.co/${SITE.bookingEmail}`;
           <label for="service">Service souhaité <span class="booking__required">*</span></label>
           <select id="service" name="Service" required>
             <option value="" disabled selected>Choisissez un service…</option>
-            {SERVICES.map((svc) => <option value={svc.title}>{svc.title}</option>)}
-            <option value="Autre / je ne suis pas certain">Autre / je ne suis pas certain</option>
+            {SERVICE_OPTIONS.map((option) => <option value={option}>{option}</option>)}
           </select>
         </div>
         <div class="booking__field">
