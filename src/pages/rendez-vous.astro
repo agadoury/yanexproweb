@@ -108,6 +108,14 @@ const FORM_ACTION = `https://formsubmit.co/${SITE.bookingEmail}`;
         ></textarea>
       </div>
 
+      <label class="booking__consent">
+        <input type="checkbox" id="rappels" name="Rappels d'entretien" value="Oui" />
+        <span>
+          J'accepte de recevoir par courriel les rappels d'entretien et de saison des pneus du
+          Garage Yanexpro (facultatif, retirable en tout temps).
+        </span>
+      </label>
+
       <button type="submit" class="btn btn--red booking__submit">Envoyer ma demande</button>
       <p class="booking__error" id="booking-error" hidden>
         L'envoi n'a pas fonctionné. Réessayez dans un instant ou appelez-nous au
@@ -227,6 +235,26 @@ const FORM_ACTION = `https://formsubmit.co/${SITE.bookingEmail}`;
     border-color: var(--red);
   }
 
+  .booking__consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 22px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--gray-3);
+    cursor: pointer;
+  }
+
+  .booking__consent input {
+    width: 17px;
+    height: 17px;
+    margin-top: 2px;
+    flex: none;
+    accent-color: var(--red);
+    cursor: pointer;
+  }
+
   .booking__submit {
     width: 100%;
     border: 0;
@@ -319,6 +347,14 @@ const FORM_ACTION = `https://formsubmit.co/${SITE.bookingEmail}`;
   const form = document.getElementById('booking-form') as HTMLFormElement | null;
   const errorBox = document.getElementById('booking-error');
 
+  // Le consentement aux rappels nécessite un courriel : la case cochée rend
+  // le champ Courriel obligatoire.
+  const consent = document.getElementById('rappels') as HTMLInputElement | null;
+  const courrielInput = document.getElementById('courriel') as HTMLInputElement | null;
+  consent?.addEventListener('change', () => {
+    if (courrielInput) courrielInput.required = consent.checked;
+  });
+
   form?.addEventListener('submit', async (event) => {
     event.preventDefault();
     const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
@@ -335,6 +371,10 @@ const FORM_ACTION = `https://formsubmit.co/${SITE.bookingEmail}`;
     const nom = String(data.get('Nom') ?? '').trim();
     const service = String(data.get('Service') ?? '').split(' (')[0];
     data.set('_subject', `Rendez-vous : ${service} — ${nom}`);
+
+    // Statut de consentement explicite dans chaque courriel reçu (une case
+    // décochée ne serait pas transmise du tout sinon).
+    data.set("Rappels d'entretien", consent?.checked ? 'Oui' : 'Non');
 
     // « Répondre » dans Gmail écrit directement au client s'il a laissé
     // son courriel.

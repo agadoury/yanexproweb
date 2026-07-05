@@ -235,6 +235,14 @@ faire un second test.
 Les catégories du menu « Service souhaité » sont dans `SERVICE_OPTIONS` en
 tête de `src/pages/rendez-vous.astro`.
 
+**Consentement aux rappels** : le formulaire comprend une case à cocher
+(décochée par défaut, comme l'exige la Loi canadienne anti-pourriel)
+« J'accepte de recevoir les rappels d'entretien… ». Chaque courriel de
+demande indique « Rappels d'entretien : Oui/Non ». Conservez les « Oui »
+avec leur courriel dans votre registre clients : c'est la base légale du
+futur [système de rappels automatisés](#priorités-principales). Cocher la
+case rend le champ Courriel obligatoire.
+
 ### Bandeau « saison des pneus »
 
 En mode `'auto'`, le bandeau décide **dans le navigateur du visiteur** (le
