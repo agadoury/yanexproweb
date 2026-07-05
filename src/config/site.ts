@@ -115,7 +115,7 @@ export const SITE = {
 
 export const NAV_LINKS = [
   { label: 'Accueil', href: '/' },
-  { label: 'Notre garage', href: '/notre-garage' },
+  { label: 'Notre garage', href: '/garage' },
   { label: 'Services', href: '/services' },
   { label: 'Rendez-vous', href: '/rendez-vous' },
   { label: 'Contactez-nous', href: '/contact' },

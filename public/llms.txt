@@ -25,7 +25,7 @@
 ## Pages
 
 - [Accueil](https://yanexpro.com/) : présentation du garage et de nos services
-- [Notre garage](https://yanexpro.com/notre-garage) : notre équipe, la certification Bumper to Bumper et l'entretien préventif
+- [Notre garage](https://yanexpro.com/garage) : notre équipe, la certification Bumper to Bumper et l'entretien préventif
 - [Services](https://yanexpro.com/services) : liste complète des services et questions fréquentes
 - [Rendez-vous](https://yanexpro.com/rendez-vous) : demande de rendez-vous en ligne
 - [Contact](https://yanexpro.com/contact) : coordonnées, heures d'ouverture et carte
