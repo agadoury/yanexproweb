@@ -493,6 +493,22 @@ const PILLARS = [
   }
 
   @media (max-width: 640px) {
+    /* Les trois mentions du héros restent côte à côte sur une seule ligne */
+    .hero__badges {
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .hero__badge-title {
+      font-size: 12.5px;
+      white-space: nowrap;
+    }
+
+    .hero__badge-sub {
+      font-size: 11px;
+    }
+
     .pillars__grid,
     .services-preview__grid,
     .reviews__grid {
@@ -507,6 +523,21 @@ const PILLARS = [
     .contact-cta {
       padding-top: 56px;
       padding-bottom: 56px;
+    }
+  }
+
+  /* Très petits écrans (iPhone SE) */
+  @media (max-width: 360px) {
+    .hero__badges {
+      gap: 10px;
+    }
+
+    .hero__badge-title {
+      font-size: 11.5px;
+    }
+
+    .hero__badge-sub {
+      font-size: 10px;
     }
   }
 </style>
