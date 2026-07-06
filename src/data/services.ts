@@ -70,7 +70,7 @@ export const SERVICES: Service[] = [
     lead: "Les véhicules électriques n'ont pas besoin de vidange d'huile, mais ils ont bel et bien besoin d'entretien. Notre équipe se tient à la fine pointe pour entretenir votre VÉ selon les recommandations du fabricant.",
     signsTitle: 'Bon à savoir',
     signs: [
-      'Le couple instantané et le poids d’un VÉ usent les pneus plus rapidement',
+      'Les accélérations très vives et le poids d’un VÉ usent les pneus plus rapidement',
       'Les freins, moins sollicités par la conduite régénérative, doivent être inspectés contre la corrosion',
       'La suspension travaille davantage en raison du poids de la batterie',
       'Le filtre d’habitacle et la climatisation demandent un entretien régulier',
@@ -85,11 +85,11 @@ export const SERVICES: Service[] = [
     faq: [
       {
         q: 'Un véhicule électrique a-t-il vraiment besoin d’entretien?',
-        a: "Oui. Pneus, freins, suspension, filtre d'habitacle et climatisation demandent un suivi régulier, d'autant plus que le poids et le couple d'un VÉ sollicitent davantage certaines pièces.",
+        a: "Oui. Pneus, freins, suspension, filtre d'habitacle et climatisation demandent un suivi régulier, d'autant plus que le poids et la puissance d'un VÉ sollicitent davantage certaines pièces.",
       },
       {
         q: 'Pourquoi les pneus d’un VÉ s’usent-ils plus vite?',
-        a: "Le couple disponible instantanément et le poids de la batterie augmentent l'usure. Une permutation régulière et un alignement précis prolongent la vie de vos pneus.",
+        a: "Un VÉ démarre avec toute sa puissance dès le premier tour de roue et pèse plus lourd à cause de sa batterie : les pneus travaillent donc plus fort. Une permutation régulière et un alignement précis prolongent leur vie.",
       },
     ],
   },
