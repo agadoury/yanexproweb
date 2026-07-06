@@ -73,19 +73,19 @@ export const SERVICES: Service[] = [
       'Les accélérations très vives et le poids d’un VÉ usent les pneus plus rapidement',
       'Les freins, moins sollicités par la conduite régénérative, doivent être inspectés contre la corrosion',
       'La suspension travaille davantage en raison du poids de la batterie',
-      'Le filtre d’habitacle et la climatisation demandent un entretien régulier',
+      'Le filtre à air intérieur et la climatisation demandent un entretien régulier',
     ],
     includes: [
       'Entretien selon le calendrier recommandé par le fabricant',
       'Inspection et entretien des freins',
       'Pneus : conseils, pose, permutation et alignement',
       'Suspension et direction',
-      'Climatisation et confort de l’habitacle',
+      'Climatisation et confort intérieur',
     ],
     faq: [
       {
         q: 'Un véhicule électrique a-t-il vraiment besoin d’entretien?',
-        a: "Oui. Pneus, freins, suspension, filtre d'habitacle et climatisation demandent un suivi régulier, d'autant plus que le poids et la puissance d'un VÉ sollicitent davantage certaines pièces.",
+        a: "Oui. Pneus, freins, suspension, filtre à air intérieur et climatisation demandent un suivi régulier, d'autant plus que le poids et la puissance d'un VÉ sollicitent davantage certaines pièces.",
       },
       {
         q: 'Pourquoi les pneus d’un VÉ s’usent-ils plus vite?',
@@ -105,7 +105,7 @@ export const SERVICES: Service[] = [
     signs: [
       'Bruit de moteur soudainement plus fort ou plus grave',
       'Cliquetis ou vibration sous le véhicule',
-      'Odeur de gaz d’échappement dans l’habitacle',
+      'Odeur de gaz d’échappement dans le véhicule',
       'Perte de puissance ou hausse de consommation',
       'Témoin moteur allumé',
     ],
@@ -118,7 +118,7 @@ export const SERVICES: Service[] = [
     faq: [
       {
         q: 'Est-ce dangereux de rouler avec un échappement percé?',
-        a: "Oui, ça peut l'être : des gaz d'échappement peuvent s'infiltrer dans l'habitacle. Faites inspecter le système rapidement dès qu'un bruit anormal apparaît.",
+        a: "Oui, ça peut l'être : des gaz d'échappement peuvent s'infiltrer à l'intérieur du véhicule. Faites inspecter le système rapidement dès qu'un bruit anormal apparaît.",
       },
       {
         q: "Pourquoi mon véhicule est-il soudainement plus bruyant?",
