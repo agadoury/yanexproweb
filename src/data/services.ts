@@ -332,7 +332,7 @@ export function getService(slug: string): Service | undefined {
   return SERVICES.find((s) => s.slug === slug);
 }
 
-/** Aperçu affiché sur la page d'accueil. */
+/** Les 9 services affichés sur la page d'accueil (libellés courts). */
 export const HOME_SERVICES = [
   { label: 'Freins et freins antiblocage (ABS)', slug: 'freins' },
   { label: 'Véhicules électriques', slug: 'vehicules-electriques' },
@@ -340,6 +340,9 @@ export const HOME_SERVICES = [
   { label: 'Alignement', slug: 'alignement' },
   { label: 'Air climatisé et refroidissement', slug: 'refroidissement-air-climatise' },
   { label: 'Vente et pose de pneus', slug: 'pneus' },
+  { label: 'Silencieux et échappement', slug: 'silencieux-echappement' },
+  { label: 'Injection et électricité', slug: 'injection-electricite' },
+  { label: 'Électronique et mise au point', slug: 'electronique-mise-au-point' },
 ] as const;
 
 /** Questions générales (page Services) — balisage FAQPage. */
