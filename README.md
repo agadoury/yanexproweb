@@ -20,9 +20,9 @@ structurées).
 
 1. [Démarrage rapide](#démarrage-rapide)
 2. [Structure du projet](#structure-du-projet)
-3. [Modifier le contenu](#modifier-le-contenu)
-4. [Fonctionnalités](#fonctionnalités)
-5. [Référencement (SEO) et moteurs de réponse (AEO)](#référencement-seo-et-moteurs-de-réponse-aeo)
+3. [Référencement (SEO) et moteurs de réponse (AEO)](#référencement-seo-et-moteurs-de-réponse-aeo)
+4. [Modifier le contenu](#modifier-le-contenu)
+5. [Fonctionnalités](#fonctionnalités)
 6. [Hébergement et déploiement](#hébergement-et-déploiement)
 7. [Liste de vérification — lancement](#liste-de-vérification--lancement)
 8. [Visibilité IA](#visibilité-ia--être-recommandé-par-chatgpt-claude-etc)
@@ -107,6 +107,152 @@ URL, sans toucher au site en ligne.
         ├── contact.astro         /contact     Coordonnées, heures, carte
         └── 404.astro             Page introuvable
 ```
+
+---
+
+## Référencement (SEO) et moteurs de réponse (AEO)
+
+Le site a été conçu dès le départ pour deux objectifs :
+
+- **SEO** (*search engine optimization*) : bien se classer dans Google et
+  Bing, surtout dans les recherches locales (« garage Varennes », « pose de
+  pneus Sainte-Julie »).
+- **AEO** (*answer engine optimization*) : être compris, cité et recommandé
+  par les moteurs de réponse IA (ChatGPT, Claude, Perplexity, Gemini, les
+  aperçus IA de Google) quand quelqu'un pose une question au lieu de taper
+  des mots-clés.
+
+Les deux reposent sur le même socle : un site rapide, lisible par les
+machines, et un contenu qui répond clairement aux vraies questions des
+clients. Voici comment chaque volet a été réalisé.
+
+### 1. Fondations techniques
+
+- **HTML complet, généré à l'avance** : chaque page est du HTML statique
+  qui contient tout son texte. Les robots (Google comme IA) lisent le
+  contenu sans exécuter de JavaScript.
+- **Vitesse** (les Core Web Vitals sont un facteur de classement) : quasi
+  aucun JavaScript, polices auto-hébergées, dimensions explicites sur les
+  images (aucun décalage de mise en page), photo du héros chargée en
+  priorité, images et carte plus bas dans la page chargées en différé,
+  pages préchargées au survol des liens. Mesurée en continu par Vercel
+  Speed Insights.
+- **Mobile d'abord** : mise en page adaptée à tous les écrans (Google
+  indexe la version mobile des sites).
+- **Indexation maîtrisée** : sitemap régénéré à chaque build et annoncé
+  dans `robots.txt`, URL canonique sur chaque page, URLs propres (sans
+  `.html` ni barre oblique finale), `/merci` non indexée et exclue du
+  sitemap, adresses `*.vercel.app` en « noindex » pour éviter le contenu
+  dupliqué (en-tête conditionnel dans `vercel.json`).
+- **Continuité avec l'ancien site** : `/garage`, `/services` et `/contact`
+  gardent leur adresse; l'autorité de recherche accumulée se transfère sans
+  redirection.
+- **HTML sémantique et accessible** : un seul titre H1 par page, hiérarchie
+  de titres cohérente, repères de navigation, fil d'Ariane, langue `fr-CA`
+  déclarée, textes alternatifs en français, noms de fichiers d'images
+  descriptifs. Zéro violation WCAG 2.1 AA.
+- **HTTPS forcé** (HSTS) et en-têtes de sécurité; vérification Google
+  Search Console intégrée (balise meta).
+
+### 2. Référencement local
+
+- **Fiche d'identité structurée** : données schema.org `AutoRepair` sur les
+  20 pages (nom, adresse, téléphone, heures, logo, zones desservies,
+  services offerts, appartenance au réseau UniPro, propriétaire). C'est ce
+  que Google et les IA lisent pour relier le site au commerce physique.
+- **Coordonnées identiques partout** : nom, adresse et téléphone viennent
+  tous de `src/config/site.ts`; le site ne peut pas afficher deux versions
+  contradictoires.
+- **Zones desservies** : section sur l'accueil et mention sur la page
+  Contact (Varennes, Boucherville, Sainte-Julie, Saint-Amable, Verchères,
+  Contrecœur, Longueuil), pour les recherches « garage près de [ville] ».
+- **Localisation visible** : adresse dans le héros avec lien vers Google
+  Maps, carte intégrée à la page Contact.
+- **Avis Google affichés** (4,9 sur 5, 77 avis), volontairement **sans**
+  balisage `AggregateRating` : Google n'accepte pas qu'une entreprise
+  balise ses propres avis, et un balisage non conforme peut entraîner une
+  pénalité manuelle.
+
+### 3. Contenu pensé pour la recherche
+
+- **Une page par service** (9 pages), chacune ciblant « [service] +
+  Varennes », avec titre et description uniques, et des symptômes formulés
+  comme les clients les décrivent (« grincement au freinage », « témoin
+  moteur allumé »).
+- **Maillage interne** : l'accueil mène aux 9 services, les articles
+  renvoient aux pages de services, le fil d'Ariane relie les pages
+  profondes, et chaque page offre un chemin vers `/rendez-vous`.
+- **Section Conseils** : articles saisonniers pour les recherches
+  informatives de longue traîne (« quand poser ses pneus d'hiver »), liée
+  au pied de page seulement.
+- **Langage simple** : le jargon a été remplacé par des mots courants
+  (« couple instantané », « habitacle »), plus proches de ce que les
+  clients tapent ou disent à un assistant vocal.
+- **Partage social** : balises Open Graph et image de partage dédiée.
+
+### 4. Optimisation pour les moteurs de réponse IA (AEO)
+
+Un assistant IA ne classe pas des pages : il extrait des réponses et cite
+des sources fiables. Le site est construit pour être facile à extraire et
+à citer :
+
+- **Format question-réponse** : FAQ sur la page Services et sur chaque page
+  de service (10 pages balisées `FAQPage`), avec des réponses qui commencent
+  par la réponse elle-même (« Oui. », « Au moins une fois par année… »).
+- **Titres en forme de questions** dans les articles (« Quand faire poser
+  ses pneus? », « Et sans symptôme : à quelle fréquence? »), pour qu'un
+  passage puisse être cité seul.
+- **Graphe d'entités** : chaque page de service (`Service`), chaque article
+  (`BlogPosting`) et chaque fil d'Ariane (`BreadcrumbList`) pointe vers la
+  même entité `#garage`. Les machines comprennent que tout ce contenu
+  appartient au même garage.
+- **`llms.txt`** : résumé en texte simple destiné aux IA (coordonnées,
+  heures, services avec leurs URL, zones desservies, note Google, faits
+  utiles).
+- **Robots IA bienvenus** : `robots.txt` autorise tous les robots (GPTBot,
+  ClaudeBot, PerplexityBot, etc.), et comme le contenu est dans le HTML,
+  même les robots qui n'exécutent pas JavaScript le lisent en entier.
+- **Faits précis et vérifiables** plutôt que slogans (ex. : pneus d'hiver
+  obligatoires du 1er décembre au 15 mars). Les IA privilégient les sources
+  qui donnent des faits citables.
+
+### Ce qui se joue hors du site
+
+Le site fournit la base, mais une bonne part du classement local et des
+recommandations IA dépend de signaux externes : fiche Google Business
+Profile, Bing Places (la recherche de ChatGPT s'appuie en partie sur Bing),
+Apple Business Connect, cohérence des annuaires et avis clients. Voir
+[Visibilité IA](#visibilité-ia--être-recommandé-par-chatgpt-claude-etc) et
+la [liste de vérification du lancement](#liste-de-vérification--lancement).
+
+### Règles pour préserver le référencement
+
+Lors de toute modification :
+
+- Ne jamais renommer un slug d'URL existant (pages de services, articles,
+  `/garage`, `/services`, `/contact`).
+- Garder un titre et une meta description uniques par page.
+- Modifier coordonnées, heures et zones uniquement dans
+  `src/config/site.ts`.
+- Garder le format question-réponse des FAQ (la réponse directe d'abord).
+- Ne pas cacher de contenu important derrière du JavaScript (onglets
+  chargés dynamiquement, etc.).
+- Ne pas bloquer de robots dans `robots.txt`.
+- Ne pas ajouter de balisage `AggregateRating` avec les avis Google.
+- Pour toute nouvelle image : `width`/`height`, texte alternatif descriptif
+  en français, nom de fichier descriptif.
+
+### Qualité vérifiée
+
+- **Accessibilité** : zéro violation WCAG 2.1 AA sur tous les types de
+  pages. Pour re-vérifier après un changement visuel :
+  `node scripts/audit-a11y.mjs` (après `npm run build`).
+- **Intégration continue** : chaque push reconstruit le site et exécute
+  `scripts/smoke.mjs` (pages présentes, données structurées, sitemap
+  correct). Un échec apparaît en rouge dans l'onglet Actions de GitHub :
+  vérifier avant de considérer un changement publié.
+- **Manifeste web** : icônes et couleur de thème pour l'ajout à l'écran
+  d'accueil d'un téléphone (`public/manifest.webmanifest`).
 
 ---
 
@@ -302,152 +448,6 @@ Apparition douce des cartes au défilement, élévation au survol des cartes
 cliquables, ombre d'en-tête au défilement. Tout est désactivé pour les
 visiteurs ayant réglé « réduire les animations » et le site reste entièrement
 fonctionnel sans JavaScript.
-
----
-
-## Référencement (SEO) et moteurs de réponse (AEO)
-
-Le site a été conçu dès le départ pour deux objectifs :
-
-- **SEO** (*search engine optimization*) : bien se classer dans Google et
-  Bing, surtout dans les recherches locales (« garage Varennes », « pose de
-  pneus Sainte-Julie »).
-- **AEO** (*answer engine optimization*) : être compris, cité et recommandé
-  par les moteurs de réponse IA (ChatGPT, Claude, Perplexity, Gemini, les
-  aperçus IA de Google) quand quelqu'un pose une question au lieu de taper
-  des mots-clés.
-
-Les deux reposent sur le même socle : un site rapide, lisible par les
-machines, et un contenu qui répond clairement aux vraies questions des
-clients. Voici comment chaque volet a été réalisé.
-
-### 1. Fondations techniques
-
-- **HTML complet, généré à l'avance** : chaque page est du HTML statique
-  qui contient tout son texte. Les robots (Google comme IA) lisent le
-  contenu sans exécuter de JavaScript.
-- **Vitesse** (les Core Web Vitals sont un facteur de classement) : quasi
-  aucun JavaScript, polices auto-hébergées, dimensions explicites sur les
-  images (aucun décalage de mise en page), photo du héros chargée en
-  priorité, images et carte plus bas dans la page chargées en différé,
-  pages préchargées au survol des liens. Mesurée en continu par Vercel
-  Speed Insights.
-- **Mobile d'abord** : mise en page adaptée à tous les écrans (Google
-  indexe la version mobile des sites).
-- **Indexation maîtrisée** : sitemap régénéré à chaque build et annoncé
-  dans `robots.txt`, URL canonique sur chaque page, URLs propres (sans
-  `.html` ni barre oblique finale), `/merci` non indexée et exclue du
-  sitemap, adresses `*.vercel.app` en « noindex » pour éviter le contenu
-  dupliqué (en-tête conditionnel dans `vercel.json`).
-- **Continuité avec l'ancien site** : `/garage`, `/services` et `/contact`
-  gardent leur adresse; l'autorité de recherche accumulée se transfère sans
-  redirection.
-- **HTML sémantique et accessible** : un seul titre H1 par page, hiérarchie
-  de titres cohérente, repères de navigation, fil d'Ariane, langue `fr-CA`
-  déclarée, textes alternatifs en français, noms de fichiers d'images
-  descriptifs. Zéro violation WCAG 2.1 AA.
-- **HTTPS forcé** (HSTS) et en-têtes de sécurité; vérification Google
-  Search Console intégrée (balise meta).
-
-### 2. Référencement local
-
-- **Fiche d'identité structurée** : données schema.org `AutoRepair` sur les
-  20 pages (nom, adresse, téléphone, heures, logo, zones desservies,
-  services offerts, appartenance au réseau UniPro, propriétaire). C'est ce
-  que Google et les IA lisent pour relier le site au commerce physique.
-- **Coordonnées identiques partout** : nom, adresse et téléphone viennent
-  tous de `src/config/site.ts`; le site ne peut pas afficher deux versions
-  contradictoires.
-- **Zones desservies** : section sur l'accueil et mention sur la page
-  Contact (Varennes, Boucherville, Sainte-Julie, Saint-Amable, Verchères,
-  Contrecœur, Longueuil), pour les recherches « garage près de [ville] ».
-- **Localisation visible** : adresse dans le héros avec lien vers Google
-  Maps, carte intégrée à la page Contact.
-- **Avis Google affichés** (4,9 sur 5, 77 avis), volontairement **sans**
-  balisage `AggregateRating` : Google n'accepte pas qu'une entreprise
-  balise ses propres avis, et un balisage non conforme peut entraîner une
-  pénalité manuelle.
-
-### 3. Contenu pensé pour la recherche
-
-- **Une page par service** (9 pages), chacune ciblant « [service] +
-  Varennes », avec titre et description uniques, et des symptômes formulés
-  comme les clients les décrivent (« grincement au freinage », « témoin
-  moteur allumé »).
-- **Maillage interne** : l'accueil mène aux 9 services, les articles
-  renvoient aux pages de services, le fil d'Ariane relie les pages
-  profondes, et chaque page offre un chemin vers `/rendez-vous`.
-- **Section Conseils** : articles saisonniers pour les recherches
-  informatives de longue traîne (« quand poser ses pneus d'hiver »), liée
-  au pied de page seulement.
-- **Langage simple** : le jargon a été remplacé par des mots courants
-  (« couple instantané », « habitacle »), plus proches de ce que les
-  clients tapent ou disent à un assistant vocal.
-- **Partage social** : balises Open Graph et image de partage dédiée.
-
-### 4. Optimisation pour les moteurs de réponse IA (AEO)
-
-Un assistant IA ne classe pas des pages : il extrait des réponses et cite
-des sources fiables. Le site est construit pour être facile à extraire et
-à citer :
-
-- **Format question-réponse** : FAQ sur la page Services et sur chaque page
-  de service (10 pages balisées `FAQPage`), avec des réponses qui commencent
-  par la réponse elle-même (« Oui. », « Au moins une fois par année… »).
-- **Titres en forme de questions** dans les articles (« Quand faire poser
-  ses pneus? », « Et sans symptôme : à quelle fréquence? »), pour qu'un
-  passage puisse être cité seul.
-- **Graphe d'entités** : chaque page de service (`Service`), chaque article
-  (`BlogPosting`) et chaque fil d'Ariane (`BreadcrumbList`) pointe vers la
-  même entité `#garage`. Les machines comprennent que tout ce contenu
-  appartient au même garage.
-- **`llms.txt`** : résumé en texte simple destiné aux IA (coordonnées,
-  heures, services avec leurs URL, zones desservies, note Google, faits
-  utiles).
-- **Robots IA bienvenus** : `robots.txt` autorise tous les robots (GPTBot,
-  ClaudeBot, PerplexityBot, etc.), et comme le contenu est dans le HTML,
-  même les robots qui n'exécutent pas JavaScript le lisent en entier.
-- **Faits précis et vérifiables** plutôt que slogans (ex. : pneus d'hiver
-  obligatoires du 1er décembre au 15 mars). Les IA privilégient les sources
-  qui donnent des faits citables.
-
-### Ce qui se joue hors du site
-
-Le site fournit la base, mais une bonne part du classement local et des
-recommandations IA dépend de signaux externes : fiche Google Business
-Profile, Bing Places (la recherche de ChatGPT s'appuie en partie sur Bing),
-Apple Business Connect, cohérence des annuaires et avis clients. Voir
-[Visibilité IA](#visibilité-ia--être-recommandé-par-chatgpt-claude-etc) et
-la [liste de vérification du lancement](#liste-de-vérification--lancement).
-
-### Règles pour préserver le référencement
-
-Lors de toute modification :
-
-- Ne jamais renommer un slug d'URL existant (pages de services, articles,
-  `/garage`, `/services`, `/contact`).
-- Garder un titre et une meta description uniques par page.
-- Modifier coordonnées, heures et zones uniquement dans
-  `src/config/site.ts`.
-- Garder le format question-réponse des FAQ (la réponse directe d'abord).
-- Ne pas cacher de contenu important derrière du JavaScript (onglets
-  chargés dynamiquement, etc.).
-- Ne pas bloquer de robots dans `robots.txt`.
-- Ne pas ajouter de balisage `AggregateRating` avec les avis Google.
-- Pour toute nouvelle image : `width`/`height`, texte alternatif descriptif
-  en français, nom de fichier descriptif.
-
-### Qualité vérifiée
-
-- **Accessibilité** : zéro violation WCAG 2.1 AA sur tous les types de
-  pages. Pour re-vérifier après un changement visuel :
-  `node scripts/audit-a11y.mjs` (après `npm run build`).
-- **Intégration continue** : chaque push reconstruit le site et exécute
-  `scripts/smoke.mjs` (pages présentes, données structurées, sitemap
-  correct). Un échec apparaît en rouge dans l'onglet Actions de GitHub :
-  vérifier avant de considérer un changement publié.
-- **Manifeste web** : icônes et couleur de thème pour l'ajout à l'écran
-  d'accueil d'un téléphone (`public/manifest.webmanifest`).
 
 ---
 
