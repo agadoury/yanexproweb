@@ -156,8 +156,9 @@ Chaque service alimente à la fois sa carte sur `/services`, sa page détaillée
 **Ajouter un service** : copier un bloc existant, choisir un `slug` unique,
 remplir les champs — la page, la carte et l'entrée de sitemap se créent
 automatiquement au prochain déploiement. `HOME_SERVICES` (même fichier)
-contrôle les 6 services mis en avant sur l'accueil, et `GENERAL_FAQ` la FAQ
-générale de la page Services.
+contrôle la liste de l'accueil (libellés courts, actuellement les 9
+services; ajouter le nouveau service à cette liste aussi), et `GENERAL_FAQ`
+la FAQ générale de la page Services.
 
 ### Les textes des pages
 
@@ -252,6 +253,15 @@ En mode `'auto'`, le bandeau décide **dans le navigateur du visiteur** (le
 site étant statique) : visible du **15 septembre au 1ᵉʳ décembre** et du
 **15 mars au 31 mai** (`tireSeasons`). Aucune intervention nécessaire d'une
 année à l'autre.
+
+### Carrousel des services (accueil, mobile)
+
+Sur téléphone, les services de l'accueil s'affichent en colonnes de 3 qu'on
+fait glisser horizontalement (défilement magnétique, aucun mouvement
+vertical). Des points de pagination sous le carrousel indiquent la page
+courante et permettent d'y naviguer; leur nombre s'ajuste tout seul au
+nombre de services dans `HOME_SERVICES`. Sur tablette et ordinateur, les
+services restent en grille. Styles et script dans `src/pages/index.astro`.
 
 ### Boutons flottants mobiles
 
